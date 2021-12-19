@@ -32,7 +32,7 @@ export default {
           component: 'Contact'
         },                
       ],
-      tabSelected: null,
+      tabSelected: 0,
       aboutme: aboutme.data.object
     }
   },
