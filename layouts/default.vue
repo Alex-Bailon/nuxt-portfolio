@@ -1,6 +1,6 @@
 <template>
   <v-app >
-    <v-main style="background-image: linear-gradient(to bottom right, red, blue );">
+    <v-main class="gradient" >
       <v-container fluid>
         <Nuxt />
       </v-container>
@@ -22,3 +22,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .gradient {
+    background-image: linear-gradient(to bottom right, red, blue );
+  }
+</style>

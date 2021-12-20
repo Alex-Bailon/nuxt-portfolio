@@ -39,9 +39,10 @@ export default {
     }
   },
   mounted(){
-    this.$gsap.fromTo('#profileImg', { scale: 0}, {scale: 1, duration: 2})
+    this.$gsap.fromTo('#profileImg', { scale: 0}, {scale: 1, duration: 1})
+    this.$gsap.fromTo('#tabsCard', { scale: 0}, {scale: 1, duration: 1})
     this.$gsap.utils.toArray('.timelineItem').forEach( (item, i) => {
-      this.$gsap.fromTo(item, { x: -350, opacity: 0}, { x: 0, opacity: 1, duration: 0.5 + i * 0.5 })
+      this.$gsap.fromTo(item, { x: -350, opacity: 0}, { x: 0, opacity: 1, duration: 0.25 + i * 0.25 })
     })
   }
 }
@@ -87,7 +88,7 @@ export default {
       </v-card>
     </v-col>
     <v-col cols="12" md="8">
-      <v-card>
+      <v-card id="tabsCard">
         <v-tabs v-model="tabSelected" show-arrows right grow>
           <v-tab v-for="tab in tabs" :key="tab.title">
             {{ tab.title }}
