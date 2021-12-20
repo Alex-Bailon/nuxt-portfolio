@@ -74,7 +74,7 @@ export default {
           </v-btn>
         </v-card-subtitle>
         <v-card-text>
-          <v-img id="profileImg" src="https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/AlexGCWest.jpg" />
+          <v-img id="profileImg" src="/AlexBailon.jpg" />
           <v-timeline dense>
             <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="item.metadata.icon" fill-dot>
               <p><strong>{{ item.metadata.title }}:</strong> <br/> {{ item.metadata.text }}</p>
