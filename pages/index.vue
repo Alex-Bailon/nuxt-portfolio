@@ -19,12 +19,14 @@ export default {
         {
           icon: 'mdiGithub',
           color: 'purple darken-1',
-          link: 'https://github.com/Alex-Bailon'
+          link: 'https://github.com/Alex-Bailon',
+          value: 'Github'
         },
         {
           icon: 'mdiLinkedin',
           color: 'cyan darken-1',
-          link: 'https://www.linkedin.com/in/alex-bailon'
+          link: 'https://www.linkedin.com/in/alex-bailon',
+          value: 'Linkedin'
         },
       ],
       timelineItems: timeline.data.objects,
@@ -72,6 +74,7 @@ export default {
             small
             :href="social.link"
             target="_blank"
+            :value="social.value"
           >
             <v-icon large>{{ icons[social.icon] }}</v-icon>
           </v-btn>
