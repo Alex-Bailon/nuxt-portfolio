@@ -1,7 +1,7 @@
 <template>
   <v-app >
-    <v-main>
-      <v-container fluid style="background-image: linear-gradient(to bottom right, red, blue );" >
+    <v-main style="background-image: linear-gradient(to bottom right, red, blue );">
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
