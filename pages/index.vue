@@ -79,7 +79,7 @@ export default {
         <v-card-text>
           <v-img id="profileImg" src="/AlexBailon.webp" alt="Alex Bailon with Grand Canyon in the background" />
           <v-timeline dense>
-            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="icons[item.metadata.icon]" fill-dot>
+            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="icons[item.metadata.icon]" fill-dot large>
               <p><strong>{{ item.metadata.title }}:</strong> <br/> {{ item.metadata.text }}</p>
             </v-timeline-item>
           </v-timeline>
