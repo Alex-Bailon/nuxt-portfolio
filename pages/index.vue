@@ -1,4 +1,5 @@
 <script>
+import { mdiGithub, mdiLinkedin, mdiCalendarCheckOutline, mdiBriefcaseOutline, mdiSchoolOutline, mdiCrosshairsGps } from '@mdi/js'
 export default {
   name: 'IndexPage',
   async asyncData({$axios}) {
@@ -6,14 +7,22 @@ export default {
     const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')
     const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
+      icons: {
+        mdiGithub,
+        mdiLinkedin,
+        mdiCalendarCheckOutline,
+        mdiBriefcaseOutline,
+        mdiSchoolOutline,
+        mdiCrosshairsGps,
+      },
       socials: [
         {
-          icon: 'mdi-github',
+          icon: 'mdiGithub',
           color: 'purple darken-1',
           link: 'https://github.com/Alex-Bailon'
         },
         {
-          icon: 'mdi-linkedin',
+          icon: 'mdiLinkedin',
           color: 'cyan darken-1',
           link: 'https://www.linkedin.com/in/alex-bailon'
         },
@@ -64,13 +73,13 @@ export default {
             :href="social.link"
             target="_blank"
           >
-            <v-icon large>{{ social.icon }}</v-icon>
+            <v-icon large>{{ icons[social.icon] }}</v-icon>
           </v-btn>
         </v-card-subtitle>
         <v-card-text>
           <v-img id="profileImg" src="/AlexBailon.webp" alt="Alex Bailon with Grand Canyon in the background" />
           <v-timeline dense>
-            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="item.metadata.icon" fill-dot>
+            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="icons[item.metadata.icon]" fill-dot>
               <p><strong>{{ item.metadata.title }}:</strong> <br/> {{ item.metadata.text }}</p>
             </v-timeline-item>
           </v-timeline>
