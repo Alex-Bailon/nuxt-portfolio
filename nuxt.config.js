@@ -43,6 +43,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -66,6 +68,16 @@ export default {
     extraEases: {
       expoScaleEase: true
     },
+  },
+
+  robots: {
+    UserAgent: '*',
+    Sitemap: `${process.env.NUXT_ENV_BASE_URL}/sitemap.xml`,
+  },
+
+  sitemap: {
+    hostname: process.env.NUXT_ENV_BASE_URL,
+    routes: ['/']
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
