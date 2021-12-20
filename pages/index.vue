@@ -38,13 +38,22 @@ export default {
       projects: projects.data.objects
     }
   },
+  mounted(){
+    this.$gsap.fromTo('#profileImg', { scale: 0}, {scale: 1, duration: 2})
+    this.$gsap.utils.toArray('.timelineItem').forEach( (item, i) => {
+      this.$gsap.fromTo(item, { x: -350, opacity: 0}, { x: 0, opacity: 1, duration: 0.5 + i * 0.5 })
+    })
+  }
 }
 </script>
 
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" md="4">
-      <v-card class="mx-auto" max-width="344">
+      <v-card
+        class="mx-auto"
+        max-width="344"
+      >
         <v-card-title class="pt-2">
           Alex Bailon
         </v-card-title>
@@ -65,9 +74,9 @@ export default {
           </v-btn>
         </v-card-subtitle>
         <v-card-text>
-          <v-img src="https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/AlexGCWest.jpg" />
+          <v-img id="profileImg" src="https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/AlexGCWest.jpg" />
           <v-timeline dense>
-            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" :color="item.metadata.color" :icon="item.metadata.icon" fill-dot>
+            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="item.metadata.icon" fill-dot>
               <p><strong>{{ item.metadata.title }}:</strong> <br/> {{ item.metadata.text }}</p>
             </v-timeline-item>
           </v-timeline>
