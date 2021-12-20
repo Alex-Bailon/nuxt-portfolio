@@ -42,6 +42,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    'nuxt-gsap-module',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -55,6 +56,16 @@ export default {
     manifest: {
       lang: 'en'
     }
+  },
+
+  gsap: {
+    extraPlugins: {
+      scrollTo: true,
+      scrollTrigger: true
+    },
+    extraEases: {
+      expoScaleEase: true
+    },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

@@ -4,6 +4,7 @@ export default {
   async asyncData({$axios}) {
     const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')
+    const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
       socials: [
         {
@@ -33,7 +34,8 @@ export default {
         },                
       ],
       tabSelected: 0,
-      aboutme: aboutme.data.object
+      aboutme: aboutme.data.object,
+      projects: projects.data.objects
     }
   },
 }
@@ -89,7 +91,7 @@ export default {
           >
             <v-card flat>
               <v-card-text>
-                <component :is="tab.component" :aboutme="aboutme"></component>
+                <component :is="tab.component" :aboutme="aboutme" :projects="projects"></component>
               </v-card-text>
             </v-card>
           </v-tab-item>
