@@ -57,11 +57,11 @@ export default {
         class="mx-auto"
         max-width="344"
       >
-        <v-card-title class="pt-2">
-          Alex Bailon
+        <v-card-title class="pt-4">
+          <h1 style="font-size: 36px">Alex Bailon</h1> 
         </v-card-title>
         <v-card-subtitle class="pb-0">
-          Full Stack Developer <br/>
+          <h2 style="font-size: 16px">Full Stack Developer</h2>
           <v-btn
             v-for="(social, i) in socials"
             :key="i"

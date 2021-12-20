@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <h2>
+  <h3>
     For the quickest response please reach out to me on <a href="https://www.linkedin.com/in/alex-bailon">LinkedIn</a>
-  </h2>
+  </h3>
 </template>
