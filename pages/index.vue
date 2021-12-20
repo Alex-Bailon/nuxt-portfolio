@@ -38,13 +38,6 @@ export default {
       projects: projects.data.objects
     }
   },
-  mounted(){
-    this.$gsap.fromTo('#profileImg', { scale: 0}, {scale: 1, duration: 1})
-    this.$gsap.fromTo('#tabsCard', { scale: 0}, {scale: 1, duration: 1})
-    this.$gsap.utils.toArray('.timelineItem').forEach( (item, i) => {
-      this.$gsap.fromTo(item, { x: -350, opacity: 0}, { x: 0, opacity: 1, duration: 0.25 + i * 0.25 })
-    })
-  }
 }
 </script>
 
