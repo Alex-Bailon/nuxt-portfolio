@@ -93,7 +93,7 @@ export default {
       <v-card id="tabsCard">
         <v-tabs v-model="tabSelected" show-arrows right grow>
           <v-tab v-for="tab in tabs" :key="tab.title">
-            {{ tab.title }}
+            <h3>{{ tab.title }}</h3>
           </v-tab>
         </v-tabs>
         <v-tabs-items v-model="tabSelected">
