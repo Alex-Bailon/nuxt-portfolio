@@ -2,6 +2,7 @@
 import { mdiGithub, mdiLinkedin, mdiCalendarCheckOutline, mdiBriefcaseOutline, mdiSchoolOutline, mdiCrosshairsGps } from '@mdi/js'
 export default {
   name: 'IndexPage',
+  layout: 'default',
   async asyncData({$axios}) {
     const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')

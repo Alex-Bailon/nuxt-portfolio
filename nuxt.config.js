@@ -101,6 +101,9 @@ export default {
     }
   },
 
+  env: {
+    WEATHER_DASHBOARD_API_KEY: process.env.WEATHER_DASHBOARD_API_KEY
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
