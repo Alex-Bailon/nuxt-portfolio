@@ -1,10 +1,15 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
+import { mdiChevronRight } from '@mdi/js'
+
 export default {
   name: 'WeatherDashboard',
   layout: 'default',
   data() {
-    return {}
+    return {
+      loading: false,
+      mdiChevronRight
+    }
   },
   computed: {
     ...mapState({
@@ -20,7 +25,12 @@ export default {
     ...mapActions({
       GET_WEATHER: 'weatherdashboard/GET_WEATHER',
       SET_WEATHER: 'weatherdashboard/SET_WEATHER'
-    })
+    }),
+    async getWeather($event){
+      this.loading = true
+      await this.GET_WEATHER($event)
+      this.loading = false
+    }
   }
 }
 </script>
@@ -41,20 +51,20 @@ export default {
             type="number"
             outlined
             hide-spin-buttons
-            @change="GET_WEATHER($event)"
+            @change="getWeather"
           ></v-text-field>
           <h3>Recent Searches</h3>
           <v-list>
             <v-list-item v-for="(item, i) in history" :key="item.city + i" @click="SET_WEATHER(item)" style="border-bottom: 2px solid lightgrey; cursor: pointer;">
               <span>{{ item.city }} ( {{ item.zip }} )</span>
-              <v-icon style="margin-left: auto">mdi-chevron-right</v-icon>
+              <v-icon style="margin-left: auto">{{ mdiChevronRight }}</v-icon>
             </v-list-item>
           </v-list>          
         </v-card-text>
       </v-card>
     </v-col>
     <v-col cols="12" md="9">
-      <v-card min-height="250px" :class="[city ? '' : 'd-flex justify-center align-center']">
+      <v-card min-height="250px" :class="[city ? '' : 'd-flex justify-center align-center']" :loading="loading" >
         <v-card-title>
           <h1>{{ city ? `${city} ( Currently ${ currentWeather.temp.toFixed(0) }&deg;F )` : 'Search for a city by zip code to begin' }}</h1>
         </v-card-title>
@@ -68,12 +78,10 @@ export default {
               :key="day.date"
               cols="12" 
               sm="3"
-              v-gsap.from="{
-                opacity: 0,
-                y: 150,
-                duration: 0.5,
-                delay: index/10
-              }"
+              v-gsap.fromTo="[
+                { opacity: 0, y: 150 },
+                { opacity: 1, y: 0, duration: 0.5, delay: index/6 },
+              ]"
             >
               <v-card>
                 <v-card-title>
