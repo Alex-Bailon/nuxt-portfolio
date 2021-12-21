@@ -4,9 +4,7 @@ export default {
   name: 'WeatherDashboard',
   layout: 'default',
   data() {
-    return {
-      currentWeatherDisplayFields: [ 'temp',  ]
-    }
+    return {}
   },
   computed: {
     ...mapState({
@@ -40,8 +38,9 @@ export default {
         <v-card-text>
           <v-text-field
             label="Search by zip code"
-            id="id"
+            type="number"
             outlined
+            hide-spin-buttons
             @change="GET_WEATHER($event)"
           ></v-text-field>
           <h3>Recent Searches</h3>
@@ -64,7 +63,18 @@ export default {
             <v-col cols="12">
               <h2>Forecast:</h2>
             </v-col>
-            <v-col v-for="day in dailyWeather" :key="day.date" cols="3">
+            <v-col
+              v-for="(day, index) in dailyWeather" 
+              :key="day.date"
+              cols="12" 
+              sm="3"
+              v-gsap.from="{
+                opacity: 0,
+                y: 150,
+                duration: 0.5,
+                delay: index/10
+              }"
+            >
               <v-card>
                 <v-card-title>
                   {{ day.date }}

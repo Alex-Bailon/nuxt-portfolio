@@ -9,13 +9,13 @@ export const state = () => ({
 export const actions = {
   GET_WEATHER: async function({commit, state}, zip) {
     try {
-      if ( state.history.filter( item => item.zip == zip ).length == 0 ){
+      if ( zip.length === 5 && state.history.filter( item => item.zip == zip ).length === 0 ){
         const current = await this.$axios.$get(`https://api.openweathermap.org/data/2.5/weather?zip=${ zip }&appid=${ process.env.WEATHER_DASHBOARD_API_KEY }`)
         const forecast = await this.$axios.$get(`https://api.openweathermap.org/data/2.5/onecall?lat=${current.coord.lat}&lon=${current.coord.lon}&units=imperial&exclude=minutely,hourly&appid=${ process.env.WEATHER_DASHBOARD_API_KEY }`)
         forecast.city = current.name
         forecast.zip = zip
         commit('setWeather', forecast)
-      } else {
+      } else if (state.history.filter( item => item.zip == zip ).length !== 0) {
         commit('setWeather', state.history.filter( item => item.zip == zip )[0])
       }
     } catch (err) {
