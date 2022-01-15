@@ -14,7 +14,7 @@
     <v-row class="px-4 d-flex justify-space-around">
       <v-col  v-for="project in projects" :key="project.title" cols="12" :sm="project.metadata.col">
         <v-card min-height="425">
-          <v-img :src="project.metadata.img" :height="project.metadata.height"/>
+          <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " :height="project.metadata.height" position="center top" />
           <v-card-title>{{ project.title }}</v-card-title>
           <v-card-text>{{ project.metadata.description }} <br/> <a target="_blank" :href="project.metadata.live">Link to live site</a> <br/> <a target="_blank" :href="project.metadata.github">Link to Github Repository</a> </v-card-text>
         </v-card>
