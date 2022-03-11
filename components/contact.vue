@@ -20,6 +20,6 @@ export default {
 
 <template>
   <h4>
-    For the quickest response please reach out to me on <a href="https://www.linkedin.com/in/alex-bailon">LinkedIn</a>
+    For the quickest response please reach out to me on <a href="https://www.linkedin.com/in/alex-bailon" target="_blank">LinkedIn</a>
   </h4>
 </template>

@@ -41,9 +41,13 @@ export default {
           component: 'Portfolio'
         },
         {
+          title: 'Resume',
+          component: 'Resume'
+        },      
+        {
           title: 'Contact',
           component: 'Contact'
-        },                
+        }
       ],
       tabSelected: 0,
       aboutme: aboutme.data.object,
@@ -54,11 +58,12 @@ export default {
 </script>
 
 <template>
-  <v-row justify="center" align="center">
+  <v-row justify="center" align="center" style="height: 100%">
     <v-col cols="12" md="4">
       <v-card
         class="mx-auto"
         max-width="344"
+        style="z-index: 7;"
       >
         <v-card-title class="pt-4">
           <h1 style="font-size: 36px">Alex Bailon</h1> 
@@ -81,20 +86,20 @@ export default {
           </v-btn>
         </v-card-subtitle>
         <v-card-text>
-          <v-img id="profileImg" src="/AlexBailon.webp" alt="Alex Bailon with Grand Canyon in the background" />
+          <v-img id="profileImg" src="/AlexBailon.webp" alt="Alex Bailon with Grand Canyon in the background" eager />
           <v-timeline dense>
             <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="icons[item.metadata.icon]" fill-dot large>
               <p><strong>{{ item.metadata.title }}:</strong> <br/> {{ item.metadata.text }}</p>
             </v-timeline-item>
           </v-timeline>
           <v-btn block depressed outlined href="https://alex-bailon.github.io/assets/images/A_Bailon_Resume.pdf" target="_blank">
-            <v-icon left>mdi-file-document</v-icon> Resume
+            Resume
           </v-btn>
         </v-card-text>
       </v-card>
     </v-col>
     <v-col cols="12" md="8">
-      <v-card id="tabsCard">
+      <v-card id="tabsCard" style="z-index: 7">
         <v-tabs v-model="tabSelected" show-arrows right grow>
           <v-tab v-for="tab in tabs" :key="tab.title">
             <h3>{{ tab.title }}</h3>

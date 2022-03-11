@@ -37,11 +37,11 @@ export default {
 
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" class="white--text text-center black">
+    <v-col cols="12" class="white--text text-center black" style="z-index: 7">
       <h1>Weather Dashboard</h1>
     </v-col>
     <v-col cols="12" md="3">
-      <v-card>
+      <v-card style="z-index: 7">
         <v-card-title>
           Dashboard
         </v-card-title>
@@ -64,7 +64,7 @@ export default {
       </v-card>
     </v-col>
     <v-col cols="12" md="9">
-      <v-card min-height="250px" :class="[city ? '' : 'd-flex justify-center align-center']" :loading="loading" >
+      <v-card min-height="250px" :class="[city ? '' : 'd-flex justify-center align-center']" :loading="loading" style="z-index: 7" >
         <v-card-title>
           <h1>{{ city ? `${city} ( Currently ${ currentWeather.temp.toFixed(0) }&deg;F )` : 'Search for a city by zip code to begin' }}</h1>
         </v-card-title>
