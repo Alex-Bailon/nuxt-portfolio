@@ -100,7 +100,7 @@ export default {
     </v-col>
     <v-col cols="12" md="8">
       <v-card id="tabsCard" style="z-index: 7">
-        <v-tabs v-model="tabSelected" show-arrows right grow>
+        <v-tabs v-model="tabSelected" show-arrows grow prev-icon="<" next-icon=">">
           <v-tab v-for="tab in tabs" :key="tab.title">
             <h3>{{ tab.title }}</h3>
           </v-tab>
