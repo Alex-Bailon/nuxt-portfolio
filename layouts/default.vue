@@ -24,7 +24,8 @@
     <v-footer
       absolute
       app
-      style="z-index: 7"
+      dark
+      style="z-index: 7; opacity: 0.9"
     >
       <span> Alex Bailon &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>

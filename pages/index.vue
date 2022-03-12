@@ -61,9 +61,10 @@ export default {
   <v-row justify="center" align="center" style="height: 100%">
     <v-col cols="12" md="4">
       <v-card
+      dark
         class="mx-auto"
         max-width="344"
-        style="z-index: 7;"
+        style="z-index: 7; opacity: 0.9;"
       >
         <v-card-title class="pt-4">
           <h1 style="font-size: 36px">Alex Bailon</h1> 
@@ -99,13 +100,13 @@ export default {
       </v-card>
     </v-col>
     <v-col cols="12" md="8">
-      <v-card id="tabsCard" style="z-index: 7">
-        <v-tabs v-model="tabSelected" show-arrows grow prev-icon="<" next-icon=">">
+      <v-card id="tabsCard" style="z-index: 7; opacity: .9" dark>
+        <v-tabs v-model="tabSelected" show-arrows grow prev-icon="<" next-icon=">" dark>
           <v-tab v-for="tab in tabs" :key="tab.title">
             <h3>{{ tab.title }}</h3>
           </v-tab>
         </v-tabs>
-        <v-tabs-items v-model="tabSelected">
+        <v-tabs-items v-model="tabSelected" dark>
           <v-tab-item
             v-for="tab in tabs"
             :key="tab.component"
