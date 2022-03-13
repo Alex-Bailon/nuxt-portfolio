@@ -15,7 +15,7 @@ export default {
       { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'Alex Bailon is Full Stack Web Developer who graduated from Northwestern University with a Full Stack Coding BootCamp. Alex Bailon has years of professional experience coding full stack applications for clients. Alex strives on always going above and beyond of what is expected. For more information on Alex Bailon please visit his website at https://www.alexbailon.net/' },
       { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://www.alexbailon.net/AlexBailon.webp' },
       { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://www.alexbailon.net/' },
-      { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Alex Bailon | Full State Developer' },
+      { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Alex Bailon | Full Stack Developer' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
