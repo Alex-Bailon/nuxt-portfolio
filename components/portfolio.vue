@@ -13,7 +13,7 @@
   <div>
     <v-row class="px-4 d-flex justify-space-around">
       <v-col v-for="project in projects" :key="project.title" cols="12" sm="6">
-        <v-card :height="$vuetify.breakpoint.smAndUp ? '100%' : 'auto'">
+        <v-card :height="$vuetify.breakpoint.smAndUp ? '650' : 'auto'">
           <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " height="60%" position="center top" />
           <v-card-title>{{ project.title }}</v-card-title>
           <v-card-text>{{ project.metadata.description }} <br/> <a target="_blank" :href="project.metadata.live">Link to live site</a> <br/> <a target="_blank" :href="project.metadata.github">Link to Github Repository</a> </v-card-text>
