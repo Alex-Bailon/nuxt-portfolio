@@ -67,7 +67,9 @@ export default {
         style="z-index: 7; opacity: 0.9;"
       >
         <v-card-title class="pt-4">
-          <h1 style="font-size: 36px">Alex Bailon</h1> 
+          <h1 class="name_text">
+            <span class="mark">Alex Bailon</span>
+          </h1> 
         </v-card-title>
         <v-card-subtitle class="pb-0">
           <h2 style="font-size: 16px">Full Stack Developer</h2>
