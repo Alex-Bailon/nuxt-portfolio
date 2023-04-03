@@ -33,7 +33,7 @@
         </v-btn>
       </div>
     </v-app-bar>
-    <v-main class="gradient" >
+    <v-main>
       <v-container>
         <Nuxt />
       </v-container>
@@ -80,16 +80,16 @@ export default {
           value: 'Phone'
         },
         {
-          icon: 'mdiGithub',
-          color: 'purple darken-1',
-          link: 'https://github.com/Alex-Bailon',
-          value: 'Github'
-        },
-        {
           icon: 'mdiLinkedin',
           color: 'cyan darken-1',
           link: 'https://www.linkedin.com/in/alex-bailon',
           value: 'Linkedin'
+        },
+        {
+          icon: 'mdiGithub',
+          color: 'purple darken-1',
+          link: 'https://github.com/Alex-Bailon',
+          value: 'Github'
         },
       ],      
     }
@@ -126,6 +126,9 @@ export default {
   .gradient {
     /* background-image: linear-gradient(to bottom right, #8b0000 , #00008b  ); */
   }
+  .v-main {
+    padding: 52px 0px !important;
+  }
   #particles-js {
     position: fixed;
     top: 0;
@@ -134,5 +137,10 @@ export default {
     width: 100vw;
     pointer-events: none;
     z-index: 5;
-  }  
+  }
+  @media only screen and (max-width: 460px) {
+    .v-main {
+      padding-top: 102px !important;
+    }
+  }
 </style>

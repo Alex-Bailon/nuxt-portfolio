@@ -6,7 +6,7 @@
 
 header {
   opacity: 0;
-  background-color: rgba($color: #000000, $alpha: 0.5) !important;
+  background-color: rgba($color: #000000, $alpha: 0.8) !important;
   .v-app-bar-title__content {
     width: 128px;
   }
@@ -22,8 +22,15 @@ header {
 .screenContainer {
   min-height: 100vh;
 }
-.contentWrapper {
+.contentwrapper {
   opacity: 0;
+}
+.intoWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .heroContainer {
@@ -222,5 +229,33 @@ header {
     &::after {
       content: none;
     }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .heroContainer {
+    flex-direction: column-reverse;
+  }  
+}
+@media only screen and (max-width: 960px) {
+  .heroContainer {
+    flex-direction: column-reverse;
+  }  
+}
+@media only screen and (max-width: 460px){
+  header {
+    height: 102px !important;
+    .v-toolbar__content {
+      height: 102px !important;
+    }
+    .socialsWrapper {
+      flex-wrap: wrap;
+      width: 150px;
+    }
+  }
+}
+@media only screen and (max-width: 430px){
+  .name_text {
+    font-size: 48px;
   }
 }

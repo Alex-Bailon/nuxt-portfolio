@@ -3,11 +3,11 @@ export default {
   name: 'IndexPage',
   layout: 'default',
   async asyncData({$axios}) {
-    const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
+    // const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')
-    const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
+    // const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
-      timelineItems: timeline.data.objects,
+      // timelineItems: timeline.data.objects,
       tabs: [
         {
           title: 'About Me',
@@ -26,9 +26,19 @@ export default {
           component: 'Contact'
         }
       ],
-      tabSelected: 0,
       aboutme: aboutme.data.object,
-      projects: projects.data.objects,
+      accordion: [
+        {
+          title: 'Tech Stack'
+        },
+        {
+          title: 'Skills'
+        },
+        {
+          title: 'Hobbies'
+        }
+      ],
+      // projects: projects.data.objects,
       welcomeComplete: false
     }
   },
@@ -51,11 +61,16 @@ export default {
     showContent() {
       this.$gsap.to('.introText', { 
         opacity: 0, 
-        transform: 'perspective(400px) rotate3d(1, 0, 0, -90deg)', 
-        delay: 1, 
+        height: 2,
+        overflow: 'hidden',
+        // transform: 'perspective(400px) rotate3d(1, 0, 0, -90deg)', 
+        delay: 1,
         onComplete: () => {
           this.$gsap.set('.intoWrapper', {display: 'none'})
-          this.$gsap.to('header', {opacity: 1})
+          this.$gsap.to('header, .contentwrapper', {opacity: 1})
+          this.$gsap.from('.myImage', {opacity: 0, scale: 0.5, delay: 0.5})
+          this.$gsap.from('.name_text', {opacity: 0, x: 250, delay: 0.5})
+          this.$gsap.from('.aboutMeWrapper', {opacity: 0, y: 250, delay: 0.5})
           this.welcomeComplete = true
         }
       })
@@ -73,13 +88,32 @@ export default {
         </h1>
       </v-col>
     </v-row>
-    <v-row v-show="welcomeComplete" class="screenContainer" justify="center" align="center">
+    <v-row v-show="welcomeComplete" class="contentwrapper">
       <v-col cols="12" class="heroContainer">
         <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" />
         <h1 class="name_text">Full Stack Developer + DevOps</h1>
       </v-col>
-      <v-col>
-        <h2>About Alex</h2>
+      <v-col class="aboutMeWrapper">
+        <v-row justify="space-between">
+          <v-col cols="12" md="7">
+            <h2>About Alex</h2>
+            <p v-html="aboutme.metadata.p1"></p>
+          </v-col>
+          <v-col cols="12" md="4" class="d-flex flex-column justify-center">
+            <v-expansion-panels accordion>
+              <v-expansion-panel
+                v-for="(item,i) in accordion"
+                :key="i"
+              >
+                <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+            <blockquote class="blockquote py-8"><p><em>{{ aboutme.metadata.quote }}<br/>- {{ aboutme.title }}</em></p></blockquote>            
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </div>
