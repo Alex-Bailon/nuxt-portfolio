@@ -1,4 +1,5 @@
 <script>
+import { mdiChevronDown } from '@mdi/js'
 export default {
   name: 'IndexPage',
   layout: 'default',
@@ -8,6 +9,7 @@ export default {
     // const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
       // timelineItems: timeline.data.objects,
+      mdiChevronDown,
       tabs: [
         {
           title: 'About Me',
@@ -104,8 +106,14 @@ export default {
               <v-expansion-panel
                 v-for="(item,i) in accordion"
                 :key="i"
+                class="transparent"
               >
-                <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
+                <v-expansion-panel-header>
+                  <template v-slot:actions>
+                      <v-icon class="icon">{{mdiChevronDown}}</v-icon>
+                  </template>
+                  {{item.title}}
+                </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </v-expansion-panel-content>
