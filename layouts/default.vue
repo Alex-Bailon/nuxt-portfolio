@@ -1,6 +1,6 @@
 <template>
   <v-app >
-    <client-only>
+    <!-- <client-only>
       <vue-particles
         color="#FF00FF"
         style="z-index: 5"
@@ -15,10 +15,26 @@
         :lines-distance="150"
         :move-speed="4"
       />
-    </client-only>
-    <div class="cursor"></div>
+    </client-only> -->
+    <!-- <div class="cursor"></div> -->
+    <v-app-bar fixed>
+      <v-app-bar-title>Alex Bailon</v-app-bar-title>
+      <div class="socialsWrapper">
+        <v-btn
+          v-for="(social, i) in socials"
+          :key="i"
+          :color="social.color"
+          class="white--text"
+          :href="social.link"
+          target="_blank"
+          :value="social.value"
+        >
+          <v-icon>{{ icons[social.icon] }}</v-icon>
+        </v-btn>
+      </div>
+    </v-app-bar>
     <v-main class="gradient" >
-      <v-container fluid style="height: 100%">
+      <v-container>
         <Nuxt />
       </v-container>
     </v-main>
@@ -34,10 +50,49 @@
 </template>
 
 <script>
+import { mdiGithub, mdiLinkedin, mdiCalendarCheckOutline, mdiBriefcaseOutline, mdiSchoolOutline, mdiCrosshairsGps, mdiEmailOutline, mdiPhone } from '@mdi/js'
+
 export default {
   name: 'DefaultLayout',
   data () {
-    return {}
+    return {
+      icons: {
+        mdiGithub,
+        mdiLinkedin,
+        mdiCalendarCheckOutline,
+        mdiBriefcaseOutline,
+        mdiSchoolOutline,
+        mdiCrosshairsGps,
+        mdiEmailOutline,
+        mdiPhone
+      },
+      socials: [
+        {
+          icon: 'mdiEmailOutline',
+          color: '',
+          link: 'mailto:abailon949@gmail.com',
+          value: 'Email'
+        },
+        {
+          icon: 'mdiPhone',
+          color: '',
+          link: 'tel:7739493259',
+          value: 'Phone'
+        },
+        {
+          icon: 'mdiGithub',
+          color: 'purple darken-1',
+          link: 'https://github.com/Alex-Bailon',
+          value: 'Github'
+        },
+        {
+          icon: 'mdiLinkedin',
+          color: 'cyan darken-1',
+          link: 'https://www.linkedin.com/in/alex-bailon',
+          value: 'Linkedin'
+        },
+      ],      
+    }
   },
   mounted(){
     this.$gsap.set(".cursor", {xPercent: -50, yPercent: -50});
@@ -69,7 +124,7 @@ export default {
 
 <style>
   .gradient {
-    background-image: linear-gradient(to bottom right, #8b0000 , #00008b  );
+    /* background-image: linear-gradient(to bottom right, #8b0000 , #00008b  ); */
   }
   #particles-js {
     position: fixed;

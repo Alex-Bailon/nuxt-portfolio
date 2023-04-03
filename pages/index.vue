@@ -1,5 +1,4 @@
 <script>
-import { mdiGithub, mdiLinkedin, mdiCalendarCheckOutline, mdiBriefcaseOutline, mdiSchoolOutline, mdiCrosshairsGps } from '@mdi/js'
 export default {
   name: 'IndexPage',
   layout: 'default',
@@ -8,28 +7,6 @@ export default {
     const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')
     const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
-      icons: {
-        mdiGithub,
-        mdiLinkedin,
-        mdiCalendarCheckOutline,
-        mdiBriefcaseOutline,
-        mdiSchoolOutline,
-        mdiCrosshairsGps,
-      },
-      socials: [
-        {
-          icon: 'mdiGithub',
-          color: 'purple darken-1',
-          link: 'https://github.com/Alex-Bailon',
-          value: 'Github'
-        },
-        {
-          icon: 'mdiLinkedin',
-          color: 'cyan darken-1',
-          link: 'https://www.linkedin.com/in/alex-bailon',
-          value: 'Linkedin'
-        },
-      ],
       timelineItems: timeline.data.objects,
       tabs: [
         {
@@ -51,77 +28,60 @@ export default {
       ],
       tabSelected: 0,
       aboutme: aboutme.data.object,
-      projects: projects.data.objects
+      projects: projects.data.objects,
+      welcomeComplete: false
     }
   },
+  mounted(){
+    let cursor = document.querySelector(".textCursor");
+    let text = document.querySelector(".introText");
+    this.$gsap.fromTo(cursor, {autoAlpha: 0, x: 2}, {autoAlpha: 1, duration: 0.5, repeat: -1, ease: 'steps(1)'});
+    this.$gsap.to(".introText", {
+      text: {
+        value: "Hi, welcome! <br/> My name is Alex Bailon &#9995; <br/> Hope you enjoy my portfolio!"
+      }, 
+      duration: 5,
+      delay: 1, 
+      ease: "none",
+      onUpdate: () => text.appendChild(cursor),
+      onComplete: () => this.showContent()
+    })
+  },
+  methods: {
+    showContent() {
+      this.$gsap.to('.introText', { 
+        opacity: 0, 
+        transform: 'perspective(400px) rotate3d(1, 0, 0, -90deg)', 
+        delay: 1, 
+        onComplete: () => {
+          this.$gsap.set('.intoWrapper', {display: 'none'})
+          this.$gsap.to('header', {opacity: 1})
+          this.welcomeComplete = true
+        }
+      })
+    }
+  }
 }
 </script>
 
 <template>
-  <v-row justify="center" align="center" style="height: 100%">
-    <v-col cols="12" md="4">
-      <v-card
-      dark
-        class="mx-auto"
-        max-width="344"
-        style="z-index: 7; opacity: 0.9;"
-      >
-        <v-card-title class="pt-4">
-          <h1 class="name_text">
-            <span class="mark">Alex Bailon</span>
-          </h1> 
-        </v-card-title>
-        <v-card-subtitle class="pb-0">
-          <h2 style="font-size: 16px">Full Stack Developer</h2>
-          <v-btn
-            v-for="(social, i) in socials"
-            :key="i"
-            :color="social.color"
-            class="white--text"
-            fab
-            icon
-            small
-            :href="social.link"
-            target="_blank"
-            :value="social.value"
-          >
-            <v-icon large>{{ icons[social.icon] }}</v-icon>
-          </v-btn>
-        </v-card-subtitle>
-        <v-card-text>
-          <v-img id="profileImg" src="/AlexBailon.webp" alt="Alex Bailon with Grand Canyon in the background" eager />
-          <v-timeline dense>
-            <v-timeline-item v-for="( item, i ) in timelineItems" :key="i" class="timelineItem" :color="item.metadata.color" :icon="icons[item.metadata.icon]" fill-dot large>
-              <p><strong>{{ item.metadata.title }}:</strong> <br/> {{ item.metadata.text }}</p>
-            </v-timeline-item>
-          </v-timeline>
-          <v-btn block depressed outlined href="https://alex-bailon.github.io/assets/images/A_Bailon_Resume.pdf" target="_blank">
-            Resume
-          </v-btn>
-        </v-card-text>
-      </v-card>
-    </v-col>
-    <v-col cols="12" md="8">
-      <v-card id="tabsCard" style="z-index: 7; opacity: .9" dark>
-        <v-tabs v-model="tabSelected" show-arrows grow prev-icon="<" next-icon=">" dark>
-          <v-tab v-for="tab in tabs" :key="tab.title">
-            <h3>{{ tab.title }}</h3>
-          </v-tab>
-        </v-tabs>
-        <v-tabs-items v-model="tabSelected" dark>
-          <v-tab-item
-            v-for="tab in tabs"
-            :key="tab.component"
-          >
-            <v-card flat>
-              <v-card-text>
-                <component :is="tab.component" :aboutme="aboutme" :projects="projects"></component>
-              </v-card-text>
-            </v-card>
-          </v-tab-item>
-        </v-tabs-items>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div>
+    <v-row class="screenContainer intoWrapper" justify="center" align="center">
+      <v-col cols="12" >
+        <h1 class="introText text-center">
+          <span class="textCursor">|</span>
+        </h1>
+      </v-col>
+    </v-row>
+    <v-row v-show="welcomeComplete" class="screenContainer" justify="center" align="center">
+      <v-col cols="12" class="heroContainer">
+        <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" />
+        <h1 class="name_text">Full Stack Developer + DevOps</h1>
+      </v-col>
+      <v-col>
+        <h2>About Alex</h2>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
