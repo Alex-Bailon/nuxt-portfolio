@@ -1,12 +1,19 @@
 <script>
 import { mdiChevronDown } from '@mdi/js'
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
 export default {
   name: 'IndexPage',
   layout: 'default',
+  components: {
+    VueSlickCarousel
+  },
   async asyncData({$axios}) {
     // const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')
-    // const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
+    const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
       // timelineItems: timeline.data.objects,
       mdiChevronDown,
@@ -40,8 +47,30 @@ export default {
           title: 'Hobbies'
         }
       ],
-      // projects: projects.data.objects,
-      welcomeComplete: false
+      projects: projects.data.objects,
+      welcomeComplete: false,
+      settings: {
+        dots: true,
+        arrows: true,
+        slidesToShow: 3,
+        responsive: [
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }        
     }
   },
   mounted(){
@@ -122,6 +151,18 @@ export default {
             <blockquote class="blockquote py-8"><p><em>{{ aboutme.metadata.quote }}<br/>- {{ aboutme.title }}</em></p></blockquote>            
           </v-col>
         </v-row>
+      </v-col>
+      <v-col cols="12" class="projectsWrapper">
+        <h3>My Work</h3>
+        <VueSlickCarousel v-bind="settings" >
+          <div v-for="project in projects" :key="project.title">
+            <v-card height="550" flat class="ma-3">
+              <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " height="50%" position="center top" />
+              <v-card-title>{{ project.title }}</v-card-title>
+              <v-card-text>{{ project.metadata.description }} <br/> <a target="_blank" :href="project.metadata.live">Link to live site</a> <br/> <a target="_blank" :href="project.metadata.github">Link to Github Repository</a> </v-card-text>
+            </v-card>
+          </div>
+        </VueSlickCarousel>
       </v-col>
     </v-row>
   </div>
