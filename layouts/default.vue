@@ -3,7 +3,7 @@
     <client-only>
       <vue-particles
         color="#FF00FF"
-        :particle-opacity="0.5"
+        :particle-opacity="0.3"
         :particles-number="150"
         shape-type="circle"
         :particle-size="3.7"

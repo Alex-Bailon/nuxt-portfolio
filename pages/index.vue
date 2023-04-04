@@ -130,7 +130,7 @@ export default {
             <p v-html="aboutme.metadata.p1"></p>
           </v-col>
           <v-col cols="12" md="4" class="d-flex flex-column justify-center">
-            <v-expansion-panels accordion>
+            <v-expansion-panels accordion flat>
               <v-expansion-panel
                 v-for="(item,i) in accordion"
                 :key="i"
