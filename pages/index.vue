@@ -50,7 +50,6 @@ export default {
       projects: projects.data.objects,
       welcomeComplete: false,
       settings: {
-        dots: true,
         arrows: true,
         slidesToShow: 3,
         responsive: [
@@ -98,7 +97,7 @@ export default {
         delay: 1,
         onComplete: () => {
           this.$gsap.set('.intoWrapper', {display: 'none'})
-          this.$gsap.to('header, .contentwrapper', {opacity: 1})
+          this.$gsap.to('.contentwrapper', {opacity: 1})
           this.$gsap.from('.myImage', {opacity: 0, scale: 0.5, delay: 0.5})
           this.$gsap.from('.name_text', {opacity: 0, x: 250, delay: 0.5})
           this.$gsap.from('.aboutMeWrapper', {opacity: 0, y: 250, delay: 0.5})

@@ -6,11 +6,13 @@
 h2, h3 {
   font-size: 42px;
 }
+.v-main__wrap {
+  overflow: hidden;
+}
 header {
-  opacity: 0;
   background-color: rgba($color: #000000, $alpha: 0.8) !important;
   .v-app-bar-title__content {
-    width: 128px;
+    width: 132px;
   }
   .v-toolbar__content {
     justify-content: space-between;
@@ -226,6 +228,25 @@ header {
 
 .slick-dots li button:before {
   color: white !important;
+}
+.slick-list {
+  overflow: visible !important;
+  .slick-slide{
+    opacity: 0.35;
+    transition: opacity 1s;
+    &.slick-active {
+      opacity: 1;
+    }
+  }
+}
+.slick-arrow {
+  z-index: 10;
+  &.slick-prev {
+    left: -10px;
+  }
+  &.slick-next {
+    right: -10px;
+  }
 }
 .v-card {
   border: 1px solid white !important;
