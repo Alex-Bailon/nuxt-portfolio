@@ -1,11 +1,10 @@
 <template>
   <v-app >
-    <!-- <client-only>
+    <client-only>
       <vue-particles
         color="#FF00FF"
-        style="z-index: 5"
         :particle-opacity="0.5"
-        :particles-number="$vuetify.breakpoint.smAndUp ? 300 : 150"
+        :particles-number="150"
         shape-type="circle"
         :particle-size="3.7"
         lines-color="#FF00FF"
@@ -15,7 +14,7 @@
         :lines-distance="150"
         :move-speed="4"
       />
-    </client-only> -->
+    </client-only>
     <!-- <div class="cursor"></div> -->
     <v-app-bar fixed>
       <v-app-bar-title>Alex Bailon</v-app-bar-title>
@@ -128,6 +127,7 @@ export default {
   }
   .v-main {
     padding: 52px 0px !important;
+    z-index: 10;
   }
   #particles-js {
     position: fixed;
