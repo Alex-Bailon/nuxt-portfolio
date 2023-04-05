@@ -102,7 +102,17 @@ export default {
           this.$gsap.from('.name_text', {opacity: 0, x: 250, delay: 0.5})
           this.$gsap.from('.aboutMeWrapper', {opacity: 0, y: 250, delay: 0.5})
           this.welcomeComplete = true
+          setTimeout(() => {
+            this.refCardsAnimation()
+          }, 500);
         }
+      })
+    },
+    refCardsAnimation() {
+      this.$ScrollTrigger.create({
+        trigger: '.refCardsWarpper',
+        animation: this.$gsap.from('.refCards', { x: -250, opacity: 0, stagger: 0.5, ease: "power1.out" }),
+        fastScrollEnd: true,
       })
     }
   }
@@ -162,6 +172,16 @@ export default {
             </v-card>
           </div>
         </VueSlickCarousel>
+      </v-col>
+      <v-col cols="12">
+        <h3>What Others Have to Say</h3>
+        <div class="d-flex justify-space-between refCardsWarpper">
+          <v-card v-for="item in 3" :key="item" height="550" width="100%" flat class="ma-3 refCards">
+            <v-img src="" />
+            <v-card-title></v-card-title>
+            <v-card-text></v-card-text>
+          </v-card>
+        </div>
       </v-col>
     </v-row>
   </div>

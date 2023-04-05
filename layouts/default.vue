@@ -16,7 +16,7 @@
       />
     </client-only>
     <!-- <div class="cursor"></div> -->
-    <v-app-bar fixed>
+    <v-app-bar fixed style="z-index: 99">
       <v-app-bar-title>Alex Bailon</v-app-bar-title>
       <div class="socialsWrapper">
         <v-btn
