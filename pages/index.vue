@@ -38,13 +38,16 @@ export default {
       aboutme: aboutme.data.object,
       accordion: [
         {
-          title: 'Tech Stack'
+          title: 'Tech Stack',
+          list: aboutme.data.object.metadata.tech_stack
         },
         {
-          title: 'Skills'
+          title: 'Skills',
+          list: aboutme.data.object.metadata.skills
         },
         {
-          title: 'Hobbies'
+          title: 'Hobbies',
+          list: aboutme.data.object.metadata.hobbies
         }
       ],
       projects: projects.data.objects,
@@ -179,7 +182,9 @@ export default {
                   {{item.title}}
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  <ul>
+                    <li v-for="li in item.list" :key="li.item">{{li.item}}</li>
+                  </ul>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
