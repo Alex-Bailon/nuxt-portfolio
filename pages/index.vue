@@ -97,24 +97,50 @@ export default {
         delay: 1,
         onComplete: () => {
           this.$gsap.set('.intoWrapper', {display: 'none'})
-          this.$gsap.to('.contentwrapper', {opacity: 1})
-          this.$gsap.from('.myImage', {opacity: 0, scale: 0.5, delay: 0.5})
-          this.$gsap.from('.name_text', {opacity: 0, x: 250, delay: 0.5})
-          this.$gsap.from('.aboutMeWrapper', {opacity: 0, y: 250, delay: 0.5})
+          this.$gsap.set('.contentwrapper', {opacity: 1})
           this.welcomeComplete = true
+          this.$ScrollTrigger.create({
+            trigger: '.intoWrapper',
+            animation: this.introTimeline(),
+            fastScrollEnd: true,
+          })
+          this.$ScrollTrigger.create({
+            trigger: '.projectsWrapper',
+            animation: this.projectsTimeline(),
+            fastScrollEnd: true,
+          })
+          this.$ScrollTrigger.create({
+            trigger: '.refWrapper',
+            animation: this.refTimeline(),
+            fastScrollEnd: true,
+          })
           setTimeout(() => {
-            this.refCardsAnimation()
+            this.$ScrollTrigger.refresh(true)
           }, 500);
         }
       })
     },
-    refCardsAnimation() {
-      this.$ScrollTrigger.create({
-        trigger: '.refCardsWarpper',
-        animation: this.$gsap.from('.refCards', { x: -250, opacity: 0, stagger: 0.5, ease: "power1.out" }),
-        fastScrollEnd: true,
-      })
-    }
+    introTimeline(){
+      const tl = this.$gsap.timeline({ease: "power1.out"})
+      tl.from('.myImage', {opacity: 0, scale: 0.5})
+      tl.from('.name_text', {opacity: 0, x: 250})
+      tl.from('.aboutMeWrapper', {opacity: 0, y: 250})
+      tl.from('.v-expansion-panel', {opacity: 0, x: 250, stagger: 0.2 })
+      return tl
+    },
+    projectsTimeline(){
+      const tl = this.$gsap.timeline({ease: "power1.out"})
+      tl.from('.projectsWrapper h3', { opacity: 0, y: 250 })
+      tl.from('.slick-slide', { opacity: 0, y: 250, stagger: 0.2 })
+      tl.from('.slick-arrow', { opacity: 0 })
+      return tl
+    },
+    refTimeline(){
+      const tl = this.$gsap.timeline({ease: "power1.out"})
+      tl.from('.refWrapper h3', { opacity: 0, x: -250 })
+      tl.from('.refCards', { x: -250, opacity: 0, stagger: 0.2 })
+      return tl
+    }    
   }
 }
 </script>
@@ -133,13 +159,13 @@ export default {
         <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" />
         <h1 class="name_text">Full Stack Developer + DevOps</h1>
       </v-col>
-      <v-col class="aboutMeWrapper">
+      <v-col>
         <v-row justify="space-between">
-          <v-col cols="12" md="7">
+          <v-col cols="12" md="7" class="aboutMeWrapper">
             <h2>About Alex</h2>
             <p v-html="aboutme.metadata.p1"></p>
           </v-col>
-          <v-col cols="12" md="4" class="d-flex flex-column justify-center">
+          <v-col cols="12" md="4" class="d-flex flex-column justify-center panels">
             <v-expansion-panels accordion flat>
               <v-expansion-panel
                 v-for="(item,i) in accordion"
@@ -173,7 +199,7 @@ export default {
           </div>
         </VueSlickCarousel>
       </v-col>
-      <v-col cols="12">
+      <v-col cols="12" class="refWrapper">
         <h3>What Others Have to Say</h3>
         <div class="d-flex justify-space-between refCardsWarpper">
           <v-card v-for="item in 3" :key="item" height="550" width="100%" flat class="ma-3 refCards">
