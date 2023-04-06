@@ -128,7 +128,7 @@ export default {
       tl.from('.myImage', {opacity: 0, scale: 0.5})
       tl.from('.name_text', {opacity: 0, x: 250})
       tl.from('.aboutMeWrapper', {opacity: 0, y: 250})
-      tl.from('.v-expansion-panel', {opacity: 0, x: 250, stagger: 0.2 })
+      tl.from('.v-expansion-panel, .blockquote', {opacity: 0, x: 250, stagger: 0.2 })
       return tl
     },
     projectsTimeline(){
@@ -143,7 +143,7 @@ export default {
       tl.from('.refWrapper h3', { opacity: 0, x: -250 })
       tl.from('.refCards', { x: -250, opacity: 0, stagger: 0.2 })
       return tl
-    }    
+    }
   }
 }
 </script>
