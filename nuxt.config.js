@@ -16,7 +16,8 @@ export default {
       { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://www.alexbailon.net/AlexBailon.webp' },
       { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://www.alexbailon.net/' },
       { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Alex Bailon | Full Stack Developer' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'theme-color', content: '#FF00FF' }
     ],
     link: [
       { rel: 'icon', href: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" }

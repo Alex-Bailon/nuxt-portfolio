@@ -134,8 +134,9 @@ export default {
     projectsTimeline(){
       const tl = this.$gsap.timeline({ease: "power1.out"})
       tl.from('.projectsWrapper h3', { opacity: 0, y: 250 })
-      tl.from('.slick-slide', { opacity: 0, y: 250, stagger: 0.2 })
-      tl.from('.slick-arrow', { opacity: 0 })
+      tl.add('showSilder')
+      tl.from('.cardContainer', { opacity: 0, y: 250, stagger: 0.2 }, 'showSilder')
+      tl.from('.slick-arrow', { opacity: 0, delay: 0.5 }, 'showSilder')
       return tl
     },
     refTimeline(){
@@ -195,7 +196,7 @@ export default {
       <v-col cols="12" class="projectsWrapper">
         <h3>My Work</h3>
         <VueSlickCarousel v-bind="settings" >
-          <div v-for="project in projects" :key="project.title">
+          <div v-for="project in projects" :key="project.title" class="cardContainer">
             <v-card height="550" flat class="ma-3">
               <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " height="50%" position="center top" />
               <v-card-title>{{ project.title }}</v-card-title>
@@ -214,6 +215,11 @@ export default {
           </v-card>
         </div>
       </v-col>
+      <v-col cols="12" class="refWrapper">
+        <h3>My Experience</h3>
+        <div>
+        </div>
+      </v-col>      
     </v-row>
   </div>
 </template>

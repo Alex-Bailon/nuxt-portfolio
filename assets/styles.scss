@@ -5,6 +5,9 @@
 }
 h2, h3 {
   font-size: 42px;
+  background: linear-gradient(to bottom, #FA08FA 0%, #1B406B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .v-main__wrap {
   overflow: hidden;
