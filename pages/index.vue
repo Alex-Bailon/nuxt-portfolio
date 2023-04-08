@@ -218,8 +218,8 @@ export default {
                 </div>
               </div>
               <v-card-text>{{item.ref}}</v-card-text>
-              <v-card-actions class="pt-0">
-                <v-btn color="primary" plain text>{{item.name}}'s LinkedIn</v-btn>
+              <v-card-actions class="pt-0 pl-4">
+                <a>{{item.name}}'s LinkedIn</a>
               </v-card-actions>
             </v-card>
           </div>
