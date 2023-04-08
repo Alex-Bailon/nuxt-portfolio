@@ -207,13 +207,23 @@ export default {
       </v-col>
       <v-col cols="12" class="refWrapper">
         <h3>What Others Have to Say</h3>
-        <div class="d-flex justify-space-between refCardsWarpper">
-          <v-card v-for="item in 3" :key="item" height="550" width="100%" flat class="ma-3 refCards">
-            <v-img src="" />
-            <v-card-title></v-card-title>
-            <v-card-text></v-card-text>
-          </v-card>
-        </div>
+        <VueSlickCarousel v-bind="settings" >
+          <div v-for="item in aboutme.metadata.refs" :key="item.name">
+            <v-card flat class="ma-3 refCards" height="550">
+              <div class="d-flex align-center">
+                <img :src="item.img.imgix_url" width="100" class="ml-4 mt-4 refImg" />
+                <div>
+                  <v-card-title>{{item.name}}</v-card-title>
+                  <v-card-subtitle>{{item.relation}}</v-card-subtitle>
+                </div>
+              </div>
+              <v-card-text>{{item.ref}}</v-card-text>
+              <v-card-actions class="pt-0">
+                <v-btn color="primary" plain text>{{item.name}}'s LinkedIn</v-btn>
+              </v-card-actions>
+            </v-card>
+          </div>
+        </VueSlickCarousel>
       </v-col>
       <v-col cols="12" class="refWrapper">
         <h3>My Experience</h3>
