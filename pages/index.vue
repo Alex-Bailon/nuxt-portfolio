@@ -117,6 +117,11 @@ export default {
             animation: this.refTimeline(),
             fastScrollEnd: true,
           })
+          this.$ScrollTrigger.create({
+            trigger: '.experienceWrapper',
+            animation: this.experienceTimeline(),
+            fastScrollEnd: true
+          })
           setTimeout(() => {
             this.$ScrollTrigger.refresh(true)
           }, 500);
@@ -144,7 +149,12 @@ export default {
       tl.from('.refWrapper h3', { opacity: 0, x: -250 })
       tl.from('.refCards', { x: -250, opacity: 0, stagger: 0.2 })
       return tl
-    }
+    },
+    experienceTimeline(){
+      const tl = this.$gsap.timeline({ease: "power1.out"})
+      tl.from('.experienceWrapper', { opacity: 0, duration: 1.5 })
+      return tl
+    }    
   }
 }
 </script>
@@ -225,8 +235,12 @@ export default {
           </div>
         </VueSlickCarousel>
       </v-col>
-      <v-col cols="12" class="refWrapper">
-        <h3>My Experience</h3>
+      <v-col cols="12" class="experienceWrapper">
+        <h3>My Experience ({{ new Date().getFullYear() - 2020 }}+ Years)</h3>
+        <object data="/A_Bailon_Resume.pdf" type="application/pdf" width="100%" height="550px">
+          <div>No online PDF viewer installed</div>
+          <a href="/A_Bailon_Resume.pdf" target="_blank">You can download here</a>
+        </object>
         <div>
         </div>
       </v-col>      

@@ -53,6 +53,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-M8NDKS2' }],    
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
