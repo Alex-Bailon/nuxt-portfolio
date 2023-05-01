@@ -81,7 +81,7 @@ export default {
     this.$gsap.fromTo(cursor, {autoAlpha: 0, x: 2}, {autoAlpha: 1, duration: 0.5, repeat: -1, ease: 'steps(1)'});
     this.$gsap.to(".introText", {
       text: {
-        value: "Hi, welcome! <br/> My name is Alex Bailon &#9995; <br/> Hope you enjoy my portfolio!"
+        value: "Hi, welcome! <br/> My name is Alex Bailon &#9995;"
       }, 
       duration: 5,
       delay: 1, 
