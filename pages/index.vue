@@ -1,8 +1,9 @@
 <script>
-import { mdiChevronDown } from '@mdi/js'
+import { mdiChevronDown, mdiDownload } from '@mdi/js'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import data from '@/assets/data'
 
 export default {
   name: 'IndexPage',
@@ -12,46 +13,9 @@ export default {
   },
   async asyncData({$axios}) {
     // const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
-    const aboutme = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects/6056606482408b0007b7f1d2?pretty=true&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&props=slug,title,content,metadata')
-    const projects = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22projects%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
     return {
-      // timelineItems: timeline.data.objects,
       mdiChevronDown,
-      tabs: [
-        {
-          title: 'About Me',
-          component: 'Aboutme'
-        },
-        {
-          title: 'Portfolio',
-          component: 'Portfolio'
-        },
-        {
-          title: 'Resume',
-          component: 'Resume'
-        },      
-        {
-          title: 'Contact',
-          component: 'Contact'
-        }
-      ],
-      aboutme: aboutme.data.object,
-      accordion: [
-        {
-          title: 'Tech Stack',
-          list: aboutme.data.object.metadata.tech_stack
-        },
-        {
-          title: 'Skills',
-          list: aboutme.data.object.metadata.skills
-        },
-        {
-          title: 'Hobbies',
-          list: aboutme.data.object.metadata.hobbies
-        }
-      ],
-      projects: projects.data.objects,
-      welcomeComplete: false,
+      mdiDownload,
       settings: {
         arrows: true,
         slidesToShow: 3,
@@ -90,10 +54,36 @@ export default {
     })
     this.showContent()
   },
+  computed: {
+    bio() {
+      return data.bio
+    },
+    refs() {
+      return data.refs
+    },
+    accordion() {
+      return [{
+        title: 'Tech Stack',
+        list: data.techStack
+      },
+      {
+        title: 'Skills',
+        list: data.skills
+      },
+      {
+        title: 'Hobbies',
+        list: data.hobbies
+      }]
+    },
+    projects() {
+      return data.projects
+    },
+    experience() {
+      return data.experience
+    }
+  },
   methods: {
     showContent() {
-      this.$gsap.set('.contentwrapper', {opacity: 1})
-      this.welcomeComplete = true
       this.$ScrollTrigger.create({
         trigger: '.projectsWrapper',
         animation: this.projectsTimeline(),
@@ -137,7 +127,16 @@ export default {
     },
     experienceTimeline(){
       const tl = this.$gsap.timeline({ease: "power1.out"})
-      tl.from('.experienceWrapper', { opacity: 0, duration: 1.5 })
+      tl.from('.experienceWrapper h3', { opacity: 0, duration: 1 })
+      tl.from('.experienceWrapper .v-timeline-item__opposite', { 
+        opacity: 0,
+        stagger: 0.2
+      })
+      tl.from('.experienceWrapper .v-timeline-item__body', { 
+        opacity: 0,
+        x: (index) => index % 2 === 0 ? 250 : -250,
+        stagger: 0.2
+      }, '<')
       return tl
     }    
   }
@@ -157,14 +156,14 @@ export default {
               </h1>
             </v-col>
           </v-row>
-          <h1 class="name_text">Sr Full Stack Developer + DevOps</h1>
+          <h1 class="name_text">Sr Full Stack Developer + DevOps + Technical Team Lead</h1>
         </div>
       </v-col>
       <v-col>
         <v-row justify="space-between">
           <v-col cols="12" md="7" class="aboutMeWrapper">
             <h2>About Alex</h2>
-            <p v-html="aboutme.metadata.p1"></p>
+            <p v-html="bio"></p>
           </v-col>
           <v-col cols="12" md="4" class="d-flex flex-column justify-center panels">
             <v-expansion-panels accordion flat>
@@ -181,12 +180,22 @@ export default {
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <ul>
-                    <li v-for="li in item.list" :key="li.item">{{li.item}}</li>
+                    <template v-if="item.title === 'Tech Stack'">
+                      <li v-for="(technologies, category) in item.list" :key="category">
+                        <strong>{{ category }}:</strong>
+                        <ul>
+                          <li v-for="tech in technologies" :key="tech">{{ tech }}</li>
+                        </ul>
+                      </li>
+                    </template>
+                    <template v-else>
+                      <li v-for="li in item.list" :key="li.item">{{li}}</li>
+                    </template>
                   </ul>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
-            <blockquote class="blockquote py-8"><p><em>{{ aboutme.metadata.quote }}<br/>- {{ aboutme.title }}</em></p></blockquote>            
+            <blockquote class="blockquote py-8"><p><em>Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.<br/>- Albert Einstein</em></p></blockquote>            
           </v-col>
         </v-row>
       </v-col>
@@ -205,18 +214,23 @@ export default {
       <v-col cols="12" class="refWrapper">
         <h3>What Others Have to Say</h3>
         <VueSlickCarousel v-bind="settings" >
-          <div v-for="item in aboutme.metadata.refs" :key="item.name">
-            <v-card flat class="ma-3 refCards" height="550">
-              <div class="d-flex align-center">
-                <img :src="item.img.imgix_url" width="100" class="ml-4 mt-4 refImg" />
-                <div>
-                  <v-card-title>{{item.name}}</v-card-title>
-                  <v-card-subtitle>{{item.relation}}</v-card-subtitle>
-                </div>
-              </div>
+          <div v-for="item in refs" :key="item.name">
+            <v-card flat class="ma-3 refCards" height="560">
               <v-card-text>{{item.ref}}</v-card-text>
-              <v-card-actions class="pt-0 pl-4">
-                <a>{{item.name}}'s LinkedIn</a>
+              <v-card-actions class="d-flex align-center pt-0 pl-4">
+                <div>
+                  <div class="text-h6">{{item.name}}</div>
+                  <div class="text-subtitle-1">{{item.relation}}</div>
+                </div>
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color="primary"
+                  :href="item.linkedin"
+                  target="_blank"
+                >
+                  View LinkedIn
+                </v-btn>
               </v-card-actions>
             </v-card>
           </div>
@@ -224,14 +238,56 @@ export default {
       </v-col>
       <v-col cols="12" class="experienceWrapper">
         <h3>My Experience ({{ new Date().getFullYear() - 2020 }}+ Years)</h3>
-        <object data="/A_Bailon_Resume.pdf" type="application/pdf" width="100%" height="550px">
-          <div>No online PDF viewer installed</div>
-          <a href="/A_Bailon_Resume.pdf" target="_blank">You can download here</a>
-        </object>
-        <div>
+        <v-timeline>
+          <v-timeline-item
+            v-for="(exp, index) in experience"
+            :key="index"
+          >
+            <template v-slot:icon>
+              <div class="custom-timeline-dot"></div>
+            </template>
+            <template v-slot:opposite>
+              <span class="text-subtitle-2 font-weight-medium">{{ exp.period }}</span>
+            </template>
+            <v-card class="elevation-1">
+              <v-card-title class="text-h6">
+                {{ exp.title }}
+              </v-card-title>
+              <v-card-subtitle>
+                {{ exp.company }} | {{ exp.location }}
+              </v-card-subtitle>
+              <v-card-text>
+                <ul>
+                  <li v-for="(resp, idx) in exp.responsibilities" :key="idx">
+                    {{ resp }}
+                  </li>
+                </ul>
+              </v-card-text>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
+        <div class="text-center mt-6">
+          <v-btn
+            color="primary"
+            href="/A_Bailon_Resume.pdf"
+            target="_blank"
+            elevation="2"
+          >
+            <v-icon left>{{mdiDownload}}</v-icon>
+            Download Resume
+          </v-btn>
         </div>
       </v-col>      
     </v-row>
   </div>
 </template>
+
+<style scoped>
+.custom-timeline-dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #FA08FA 0%, #1B406B 100%) !important;
+}
+</style>
 

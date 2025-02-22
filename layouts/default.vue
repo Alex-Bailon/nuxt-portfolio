@@ -17,7 +17,9 @@
     </client-only>
     <!-- <div class="cursor"></div> -->
     <v-app-bar fixed style="z-index: 99">
-      <v-app-bar-title>Alex Bailon</v-app-bar-title>
+      <NuxtLink to="/" class="text-decoration-none">
+        <v-app-bar-title class="cursor-pointer">Alex Bailon</v-app-bar-title>
+      </NuxtLink>
       <div class="socialsWrapper">
         <v-btn
           v-for="(social, i) in socials"
@@ -142,5 +144,16 @@ export default {
     .v-main {
       padding-top: 102px !important;
     }
+  }
+  .v-app-bar-title {
+    color: inherit !important;
+  }
+  
+  .v-app-bar a {
+    color: inherit;
+  }
+  
+  .v-app-bar a:hover {
+    opacity: 0.8;
   }
 </style>

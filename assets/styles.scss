@@ -35,16 +35,6 @@ header {
 .screenContainer {
   min-height: 100vh;
 }
-.contentwrapper {
-  opacity: 0;
-}
-.intoWrapper {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // width: 100vw;
-  // height: 100vh;
-}
 
 .heroContainer {
   display: flex;
@@ -90,7 +80,7 @@ header {
   line-height: 1;
   &::before,
   &::after {
-    content: "Sr Full Stack Developer + DevOps";
+    content: "Sr Full Stack Developer + DevOps + Technical Team Lead";
     position: absolute;
     top: 0;
     left: 0;
