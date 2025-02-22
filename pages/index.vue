@@ -81,52 +81,37 @@ export default {
     this.$gsap.fromTo(cursor, {autoAlpha: 0, x: 2}, {autoAlpha: 1, duration: 0.5, repeat: -1, ease: 'steps(1)'});
     this.$gsap.to(".introText", {
       text: {
-        value: "Hi, welcome! <br/> My name is Alex Bailon &#9995;"
+        value: "Hi, welcome! My name is Alex Bailon &#9995;"
       }, 
       duration: 5,
       delay: 1, 
       ease: "none",
       onUpdate: () => text.appendChild(cursor),
-      onComplete: () => this.showContent()
     })
+    this.showContent()
   },
   methods: {
     showContent() {
-      this.$gsap.to('.introText', { 
-        opacity: 0, 
-        height: 2,
-        overflow: 'hidden',
-        // transform: 'perspective(400px) rotate3d(1, 0, 0, -90deg)', 
-        delay: 1,
-        onComplete: () => {
-          this.$gsap.set('.intoWrapper', {display: 'none'})
-          this.$gsap.set('.contentwrapper', {opacity: 1})
-          this.welcomeComplete = true
-          this.$ScrollTrigger.create({
-            trigger: '.intoWrapper',
-            animation: this.introTimeline(),
-            fastScrollEnd: true,
-          })
-          this.$ScrollTrigger.create({
-            trigger: '.projectsWrapper',
-            animation: this.projectsTimeline(),
-            fastScrollEnd: true,
-          })
-          this.$ScrollTrigger.create({
-            trigger: '.refWrapper',
-            animation: this.refTimeline(),
-            fastScrollEnd: true,
-          })
-          this.$ScrollTrigger.create({
-            trigger: '.experienceWrapper',
-            animation: this.experienceTimeline(),
-            fastScrollEnd: true
-          })
-          setTimeout(() => {
-            this.$ScrollTrigger.refresh(true)
-          }, 500);
-        }
+      this.$gsap.set('.contentwrapper', {opacity: 1})
+      this.welcomeComplete = true
+      this.$ScrollTrigger.create({
+        trigger: '.projectsWrapper',
+        animation: this.projectsTimeline(),
+        fastScrollEnd: true,
       })
+      this.$ScrollTrigger.create({
+        trigger: '.refWrapper',
+        animation: this.refTimeline(),
+        fastScrollEnd: true,
+      })
+      this.$ScrollTrigger.create({
+        trigger: '.experienceWrapper',
+        animation: this.experienceTimeline(),
+        fastScrollEnd: true
+      })
+      setTimeout(() => {
+        this.$ScrollTrigger.refresh(true)
+      }, 500);
     },
     introTimeline(){
       const tl = this.$gsap.timeline({ease: "power1.out"})
@@ -161,17 +146,19 @@ export default {
 
 <template>
   <div>
-    <v-row class="screenContainer intoWrapper" justify="center" align="center">
-      <v-col cols="12" >
-        <h1 class="introText text-center">
-          <span class="textCursor">|</span>
-        </h1>
-      </v-col>
-    </v-row>
-    <v-row v-show="welcomeComplete" class="contentwrapper">
+    <v-row class="contentwrapper">
       <v-col cols="12" class="heroContainer">
         <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" />
-        <h1 class="name_text">Full Stack Developer + DevOps</h1>
+        <div>
+          <v-row class="intoWrapper" justify="center" align="center">
+            <v-col cols="12" >
+              <h1 class="introText">
+                <span class="textCursor">|</span>
+              </h1>
+            </v-col>
+          </v-row>
+          <h1 class="name_text">Sr Full Stack Developer + DevOps</h1>
+        </div>
       </v-col>
       <v-col>
         <v-row justify="space-between">
