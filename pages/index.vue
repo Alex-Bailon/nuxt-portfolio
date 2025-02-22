@@ -87,21 +87,27 @@ export default {
         trigger: '.intoWrapper',
         animation: this.introTimeline(),
         fastScrollEnd: true,
+        once: true
       })
       this.$ScrollTrigger.create({
         trigger: '.projectsWrapper',
         animation: this.projectsTimeline(),
         fastScrollEnd: true,
+        once: true
       })
       this.$ScrollTrigger.create({
         trigger: '.refWrapper',
         animation: this.refTimeline(),
         fastScrollEnd: true,
+        once: true
       })
       this.$ScrollTrigger.create({
         trigger: '.experienceWrapper',
         animation: this.experienceTimeline(),
-        fastScrollEnd: true
+        fastScrollEnd: true,
+        once: true,
+        start: "top center",
+        toggleActions: "play none none none"
       })
       setTimeout(() => {
         this.$ScrollTrigger.refresh(true)
