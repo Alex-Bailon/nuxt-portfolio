@@ -84,6 +84,11 @@ export default {
   methods: {
     showContent() {
       this.$ScrollTrigger.create({
+        trigger: '.intoWrapper',
+        animation: this.introTimeline(),
+        fastScrollEnd: true,
+      })
+      this.$ScrollTrigger.create({
         trigger: '.projectsWrapper',
         animation: this.projectsTimeline(),
         fastScrollEnd: true,

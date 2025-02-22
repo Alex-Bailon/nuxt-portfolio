@@ -18,7 +18,7 @@
     <!-- <div class="cursor"></div> -->
     <v-app-bar fixed style="z-index: 99">
       <NuxtLink to="/" class="text-decoration-none">
-        <v-app-bar-title class="cursor-pointer">Alex Bailon</v-app-bar-title>
+        <v-app-bar-title class="cursor-pointer white--text">Alex Bailon</v-app-bar-title>
       </NuxtLink>
       <div class="socialsWrapper">
         <v-btn
