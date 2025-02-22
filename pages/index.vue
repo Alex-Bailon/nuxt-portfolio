@@ -11,8 +11,7 @@ export default {
   components: {
     VueSlickCarousel
   },
-  async asyncData({$axios}) {
-    // const timeline = await $axios.get('https://api.cosmicjs.com/v2/buckets/nuxt-portfolio-production/objects?pretty=true&query=%7B%22type%22%3A%22time-lines%22%7D&read_key=LPx3LELVgjXcFbGKD3xjBQGNVd87FsFbK9bbCeO9MJ8lFGNcLN&limit=20&props=slug,title,content,metadata')
+  async asyncData() {
     return {
       mdiChevronDown,
       mdiDownload,
@@ -48,7 +47,7 @@ export default {
         value: "Hi, welcome! My name is Alex Bailon &#9995;"
       }, 
       duration: 5,
-      delay: 1, 
+      delay: 0.5, 
       ease: "none",
       onUpdate: () => text.appendChild(cursor),
     })
@@ -147,7 +146,7 @@ export default {
   <div>
     <v-row class="contentwrapper">
       <v-col cols="12" class="heroContainer">
-        <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" />
+        <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" position="left" />
         <div>
           <v-row class="intoWrapper" justify="center" align="center">
             <v-col cols="12" >

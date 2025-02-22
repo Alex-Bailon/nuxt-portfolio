@@ -35,7 +35,7 @@
       </div>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container class="pt-8">
         <Nuxt />
       </v-container>
     </v-main>
