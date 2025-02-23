@@ -11,7 +11,7 @@ export default {
   components: {
     VueSlickCarousel
   },
-  async asyncData() {
+  data() {
     return {
       mdiChevronDown,
       mdiDownload,
@@ -35,23 +35,16 @@ export default {
             }
           }
         ]
-      }        
+      },
+      introText: "Hi, welcome! My name is Alex Bailon 👋",
+      showIntro: false
     }
   },
-  mounted(){
-    let cursor = document.querySelector(".textCursor");
-    let text = document.querySelector(".introText");
-    this.$gsap.fromTo(cursor, {autoAlpha: 0, x: 2}, {autoAlpha: 1, duration: 0.5, repeat: -1, ease: 'steps(1)'});
-    this.$gsap.to(".introText", {
-      text: {
-        value: "Hi, welcome! My name is Alex Bailon &#9995;"
-      }, 
-      duration: 5,
-      delay: 0.5, 
-      ease: "none",
-      onUpdate: () => text.appendChild(cursor),
-    })
-    this.showContent()
+  mounted() {
+    // Add a small delay to start the animation
+    setTimeout(() => {
+      this.showIntro = true
+    }, 300)
   },
   computed: {
     bio() {
@@ -80,75 +73,6 @@ export default {
     experience() {
       return data.experience
     }
-  },
-  methods: {
-    showContent() {
-      this.$ScrollTrigger.create({
-        trigger: '.intoWrapper',
-        animation: this.introTimeline(),
-        fastScrollEnd: true,
-        once: true
-      })
-      this.$ScrollTrigger.create({
-        trigger: '.projectsWrapper',
-        animation: this.projectsTimeline(),
-        fastScrollEnd: true,
-        once: true
-      })
-      this.$ScrollTrigger.create({
-        trigger: '.refWrapper',
-        animation: this.refTimeline(),
-        fastScrollEnd: true,
-        once: true
-      })
-      this.$ScrollTrigger.create({
-        trigger: '.experienceWrapper',
-        animation: this.experienceTimeline(),
-        fastScrollEnd: true,
-        once: true,
-        start: "top center",
-        toggleActions: "play none none none"
-      })
-      setTimeout(() => {
-        this.$ScrollTrigger.refresh(true)
-      }, 500);
-    },
-    introTimeline(){
-      const tl = this.$gsap.timeline({ease: "power1.out"})
-      tl.from('.myImage', {opacity: 0, scale: 0.5})
-      tl.from('.name_text', {opacity: 0, x: 250})
-      tl.from('.aboutMeWrapper', {opacity: 0, y: 250})
-      tl.from('.v-expansion-panel, .blockquote', {opacity: 0, x: 250, stagger: 0.2 })
-      return tl
-    },
-    projectsTimeline(){
-      const tl = this.$gsap.timeline({ease: "power1.out"})
-      tl.from('.projectsWrapper h3', { opacity: 0, y: 250 })
-      tl.add('showSilder')
-      tl.from('.cardContainer', { opacity: 0, y: 250, stagger: 0.2 }, 'showSilder')
-      tl.from('.slick-arrow', { opacity: 0, delay: 0.5 }, 'showSilder')
-      return tl
-    },
-    refTimeline(){
-      const tl = this.$gsap.timeline({ease: "power1.out"})
-      tl.from('.refWrapper h3', { opacity: 0, x: -250 })
-      tl.from('.refCards', { x: -250, opacity: 0, stagger: 0.2 })
-      return tl
-    },
-    experienceTimeline(){
-      const tl = this.$gsap.timeline({ease: "power1.out"})
-      tl.from('.experienceWrapper h3', { opacity: 0, duration: 1 })
-      tl.from('.experienceWrapper .v-timeline-item__opposite', { 
-        opacity: 0,
-        stagger: 0.2
-      })
-      tl.from('.experienceWrapper .v-timeline-item__body', { 
-        opacity: 0,
-        x: (index) => index % 2 === 0 ? 250 : -250,
-        stagger: 0.2
-      }, '<')
-      return tl
-    }    
   }
 }
 </script>
@@ -162,9 +86,10 @@ export default {
         </div>
         <div>
           <v-row class="intoWrapper" justify="center" align="center">
-            <v-col cols="12" >
-              <h1 class="introText">
-                <span class="textCursor">|</span>
+            <v-col cols="12">
+              <h1 class="introText" :class="{ 'start-typing': showIntro }">
+                {{ introText }}
+                <span class="cursor">|</span>
               </h1>
             </v-col>
           </v-row>
@@ -185,8 +110,8 @@ export default {
                 class="transparent"
               >
                 <v-expansion-panel-header>
-                  <template v-slot:actions>
-                      <v-icon class="icon">{{mdiChevronDown}}</v-icon>
+                  <template #actions>
+                    <v-icon class="icon">{{mdiChevronDown}}</v-icon>
                   </template>
                   {{item.title}}
                 </v-expansion-panel-header>
@@ -218,13 +143,7 @@ export default {
             <v-card height="550" flat class="ma-3">
               <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " height="50%" position="center top" />
               <v-card-title>{{ project.title }}</v-card-title>
-              <v-card-text>
-                {{ project.metadata.description }} 
-                <br/> 
-                <a target="_blank" :href="project.metadata.live">Link to live site</a> 
-                <br/> 
-                <a v-if="project.metadata.github !== 'private'" target="_blank" :href="project.metadata.github">Link to Github Repository</a>
-              </v-card-text>
+              <v-card-text>{{ project.metadata.description }} <br/> <a target="_blank" :href="project.metadata.live">Link to live site</a> <br/> <a target="_blank" :href="project.metadata.github">Link to Github Repository</a> </v-card-text>
             </v-card>
           </div>
         </VueSlickCarousel>
@@ -261,10 +180,10 @@ export default {
             v-for="(exp, index) in experience"
             :key="index"
           >
-            <template v-slot:icon>
+            <template #icon>
               <div class="custom-timeline-dot"></div>
             </template>
-            <template v-slot:opposite>
+            <template #opposite>
               <span class="text-subtitle-2 font-weight-medium">{{ exp.period }}</span>
             </template>
             <v-card class="elevation-1">
@@ -354,6 +273,35 @@ export default {
   height: 100%;
   border-radius: 50%;
   background: linear-gradient(to bottom right, #FA08FA 0%, #1B406B 100%) !important;
+}
+
+/* New CSS Animations */
+.introText {
+  opacity: 0;
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.introText.start-typing {
+  opacity: 1;
+  width: 100%;
+  animation: typing 3s steps(40, end);
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from, to { opacity: 1 }
+  50% { opacity: 0 }
 }
 </style>
 
