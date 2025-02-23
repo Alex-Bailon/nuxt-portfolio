@@ -79,8 +79,8 @@ export default {
 
   gsap: {
     extraPlugins: {
-      scrollTo: true,
-      scrollTrigger: true,
+      // scrollTo: true,
+      // scrollTrigger: true,
       text: true
     },
     extraEases: {

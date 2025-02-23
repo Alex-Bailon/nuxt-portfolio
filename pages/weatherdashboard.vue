@@ -78,10 +78,6 @@ export default {
               :key="day.date"
               cols="12" 
               sm="3"
-              v-gsap.fromTo="[
-                { opacity: 0, y: 150 },
-                { opacity: 1, y: 0, duration: 0.5, delay: index/6 },
-              ]"
             >
               <v-card>
                 <v-card-title>
