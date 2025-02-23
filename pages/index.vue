@@ -283,6 +283,7 @@ export default {
             color="primary"
             href="/A_Bailon_Resume.pdf"
             target="_blank"
+            download="Alex_Bailon_Resume.pdf"
             elevation="2"
           >
             <v-icon left>{{mdiDownload}}</v-icon>
