@@ -162,7 +162,7 @@ export default {
 
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" class="white--text text-center black" style="z-index: 7">
+    <v-col cols="12" class="white--text text-center" style="z-index: 7">
       <h1>Phaser Game</h1>
     </v-col>
     <v-col cols="12" style="height: 700px">

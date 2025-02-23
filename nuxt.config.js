@@ -16,15 +16,25 @@ export default {
       { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://www.alexbailon.net/AlexBailon.webp' },
       { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://www.alexbailon.net/' },
       { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Alex Bailon | Full Stack Developer' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'theme-color', content: '#FF00FF' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', href: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
+      }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/styles.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -51,6 +61,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-M8NDKS2' }],    
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -69,7 +80,8 @@ export default {
   gsap: {
     extraPlugins: {
       scrollTo: true,
-      scrollTrigger: true
+      scrollTrigger: true,
+      text: true
     },
     extraEases: {
       expoScaleEase: true
@@ -85,24 +97,18 @@ export default {
     hostname: process.env.NUXT_ENV_BASE_URL,
     routes: ['/']
   },
-
+  router: {
+    scrollBehavior(to, from, savedPosition) {
+      return { x: 0, y: 0 };
+    }
+  },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
     defaultAssets: false,
     theme: {
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
+      dark: true
     }
   },
 

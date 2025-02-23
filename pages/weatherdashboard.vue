@@ -37,7 +37,7 @@ export default {
 
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" class="white--text text-center black" style="z-index: 7">
+    <v-col cols="12" class="white--text text-center" style="z-index: 7">
       <h1>Weather Dashboard</h1>
     </v-col>
     <v-col cols="12" md="3">
@@ -53,7 +53,7 @@ export default {
             hide-spin-buttons
             @change="getWeather"
           ></v-text-field>
-          <h3>Recent Searches</h3>
+          <h4>Recent Searches</h4>
           <v-list>
             <v-list-item v-for="(item, i) in history" :key="item.city + i" @click="SET_WEATHER(item)" style="border-bottom: 2px solid lightgrey; cursor: pointer;">
               <span>{{ item.city }} ( {{ item.zip }} )</span>
