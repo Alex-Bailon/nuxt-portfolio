@@ -59,6 +59,51 @@ export default {
   ],
   "projects": [
     {
+      "slug": "airbud",
+      "title": "Airbud",
+      "content": "",
+      "metadata": {
+        "description": "Airbud website dedicated to the beloved Airbud movie franchise. Built with Vue.js/Nuxt, the site features character profiles, movie summaries, memorable moments, and interactive elements celebrating the sports-playing golden retriever that captured hearts worldwide.",
+        "github": "private",
+        "live": "https://www.airbud.com/",
+        "col": 12,
+        "height": 300,
+        "image": {
+          "url": "/airbud.webp"
+        }
+      }
+    },
+    {
+      "slug": "ink-c-tatts",
+      "title": "Ink-C-Tatts",
+      "content": "",
+      "metadata": {
+        "description": "A tattoo artist portfolio and booking platform built with modern web technologies.",
+        "github": "https://github.com/Alex-Bailon/ink-c-tatts",
+        "live": "https://ink-c-tatts.netlify.app/",
+        "col": 12,
+        "height": 300,
+        "image": {
+          "url": "/ink-c-tatts.webp"
+        }
+      }
+    },
+    {
+      "slug": "natural-selection-tour",
+      "title": "Natural Selection Tour",
+      "content": "",
+      "metadata": {
+        "description": "A Web3-enabled platform for the Natural Selection snowboarding tour, featuring NFT integration for exclusive rider content and digital collectibles. The site combines live event updates, rider profiles, and blockchain technology to create a unique fan experience.",
+        "github": "private",
+        "live": "https://nft.naturalselectiontour.com/collection/naturalselectiontour",
+        "col": 12,
+        "height": 300,
+        "image": {
+          "url": "/natural-selection-tour.webp"
+        }
+      }
+    },
+    {
       "slug": "phaser-game",
       "title": "Phaser Game",
       "content": "",
@@ -70,8 +115,7 @@ export default {
       "col": 6,
       "height": 200,
       "image": {
-      "url": "https://cdn.cosmicjs.com/3b585e00-defa-11ec-bb19-d9085ce408df-Screenshot-2022-05-28-214902.png",
-      "imgix_url": "https://imgix.cosmicjs.com/3b585e00-defa-11ec-bb19-d9085ce408df-Screenshot-2022-05-28-214902.png"
+      "url": "/phaser-game.webp",
       }
       }
       },
@@ -83,12 +127,10 @@ export default {
       "description": "Fetch is a Tinder for dogs. This app allows the user to create an account and start matching with other dogs. Using MERN my team and I were able to build this app from the ground up in just two weeks",
       "github": "https://github.com/raise-da-woof/fetch",
       "live": "https://fetch-woof-312.herokuapp.com/",
-      "img": "https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/fetch.png",
       "col": 12,
       "height": 300,
       "image": {
-      "url": null,
-      "imgix_url": null
+      "url": '/fetch.webp',
       }
       }
       },
@@ -100,9 +142,11 @@ export default {
       "description": "A full stack health app that allows user to sign-up and login so that they can keep track of their daily nutrition intake.",
       "github": "https://github.com/Alex-Bailon/health-app",
       "live": "https://health-app-2020.herokuapp.com/",
-      "img": "https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/homeBody.png",
       "col": 6,
-      "height": 200
+      "height": 200,
+      "image": {
+      "url": '/homeBody.webp',
+      }
       }
       },
       {
@@ -113,12 +157,10 @@ export default {
       "description": "A weather app that gets information from an API and displays the current and five day weather forecast for the searched city. Saves cities into local storage.",
       "github": "https://github.com/Alex-Bailon/nuxt-portfolio/blob/main/pages/weatherdashboard.vue",
       "live": "/weatherdashboard",
-      "img": "https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/WeatherDashboard.png",
       "col": 6,
       "height": 200,
       "image": {
-      "url": "https://cdn.cosmicjs.com/fe18c660-763a-11ec-bfef-718573fe8f91-weather-dashboard.png",
-      "imgix_url": "https://imgix.cosmicjs.com/fe18c660-763a-11ec-bfef-718573fe8f91-weather-dashboard.png"
+      "url": "/weather-dashboard.webp",
       }
       }
       },
@@ -130,11 +172,13 @@ export default {
       "description": "A simple day planner for regular business hours. Displays current date and checks for the current hour to know if an event is past, present or in the future. This powerful planner is fully frontend driven.",
       "github": "https://github.com/Alex-Bailon/day-planner",
       "live": "https://alex-bailon.github.io/day-planner/",
-      "img": "https://raw.githubusercontent.com/Alex-Bailon/Alex-Bailon.github.io/master/assets/images/DayPlanner.png",
       "col": 12,
-      "height": 300
+      "height": 300,
+      "image": {
+      "url": "/dayPlanner.webp",
       }
       }
+    }
   ],
   "refs": [
     {
