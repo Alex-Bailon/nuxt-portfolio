@@ -218,7 +218,13 @@ export default {
             <v-card height="550" flat class="ma-3">
               <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " height="50%" position="center top" />
               <v-card-title>{{ project.title }}</v-card-title>
-              <v-card-text>{{ project.metadata.description }} <br/> <a target="_blank" :href="project.metadata.live">Link to live site</a> <br/> <a target="_blank" :href="project.metadata.github">Link to Github Repository</a> </v-card-text>
+              <v-card-text>
+                {{ project.metadata.description }} 
+                <br/> 
+                <a target="_blank" :href="project.metadata.live">Link to live site</a> 
+                <br/> 
+                <a v-if="project.metadata.github !== 'private'" target="_blank" :href="project.metadata.github">Link to Github Repository</a>
+              </v-card-text>
             </v-card>
           </div>
         </VueSlickCarousel>
