@@ -157,7 +157,9 @@ export default {
   <div>
     <v-row class="contentwrapper">
       <v-col cols="12" class="heroContainer">
-        <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" position="left" />
+        <div class="imageWrapper">
+          <v-img src="/AlexBailon.webp" class="myImage" aspect-ratio="1" width="300" max-width="100%" position="left" />
+        </div>
         <div>
           <v-row class="intoWrapper" justify="center" align="center">
             <v-col cols="12" >
@@ -293,6 +295,53 @@ export default {
 </template>
 
 <style scoped>
+.imageWrapper {
+  width: 300px;
+  max-width: 100%;
+  height: 300px;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  position: relative;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.imageWrapper::before, .imageWrapper::after {
+  --angle: 0deg;
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #FA08FA, #1B406B, #FA08FA, #1B406B, #FA08FA);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) ;
+  border-radius: 6px;
+  z-index: -1;
+  animation: spin 3s linear infinite;
+}
+
+.imageWrapper::before {
+  filter: blur(10px);
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
 .custom-timeline-dot {
   width: 100%;
   height: 100%;
