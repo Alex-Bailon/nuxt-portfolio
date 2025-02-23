@@ -77,17 +77,6 @@ export default {
     }
   },
 
-  gsap: {
-    extraPlugins: {
-      // scrollTo: true,
-      // scrollTrigger: true,
-      text: true
-    },
-    extraEases: {
-      expoScaleEase: true
-    },
-  },
-
   robots: {
     UserAgent: '*',
     Sitemap: `${process.env.NUXT_ENV_BASE_URL}/sitemap.xml`,
