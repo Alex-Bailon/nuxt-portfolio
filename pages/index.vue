@@ -140,7 +140,7 @@ export default {
         <h3>My Work</h3>
         <VueSlickCarousel v-bind="settings" >
           <div v-for="project in projects" :key="project.title" class="cardContainer">
-            <v-card height="550" flat class="ma-3">
+            <v-card height="575" flat class="ma-3">
               <v-img :src="project.metadata.image && project.metadata.image.url ? project.metadata.image.url : project.metadata.img " height="50%" position="center top" />
               <v-card-title>{{ project.title }}</v-card-title>
               <v-card-text>{{ project.metadata.description }} <br/> <a target="_blank" :href="project.metadata.live">Link to live site</a> <br/> <a target="_blank" :href="project.metadata.github">Link to Github Repository</a> </v-card-text>
@@ -152,7 +152,7 @@ export default {
         <h3>What Others Have to Say</h3>
         <VueSlickCarousel v-bind="settings" >
           <div v-for="item in refs" :key="item.name">
-            <v-card flat class="ma-3 refCards" height="560">
+            <v-card flat class="ma-3 refCards">
               <v-card-text>{{item.ref}}</v-card-text>
               <v-card-actions class="d-flex align-center pt-0 pl-4">
                 <div>
@@ -175,7 +175,7 @@ export default {
       </v-col>
       <v-col cols="12" class="experienceWrapper">
         <h3>My Experience ({{ new Date().getFullYear() - 2020 }}+ Years)</h3>
-        <v-timeline>
+        <v-timeline :dense="$vuetify.breakpoint.smAndDown">
           <v-timeline-item
             v-for="(exp, index) in experience"
             :key="index"
