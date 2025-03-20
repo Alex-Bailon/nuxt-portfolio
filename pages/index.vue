@@ -153,7 +153,7 @@ export default {
         <VueSlickCarousel v-bind="settings" >
           <div v-for="item in refs" :key="item.name">
             <v-card flat class="ma-3 refCards">
-              <v-card-text>{{item.ref}}</v-card-text>
+              <v-card-text class="ref-text">{{item.ref}}</v-card-text>
               <v-card-actions class="d-flex align-center pt-0 pl-4">
                 <div>
                   <div class="text-h6">{{item.name}}</div>
@@ -281,6 +281,9 @@ export default {
   width: 0;
   white-space: nowrap;
   overflow: hidden;
+  @media (max-width: 1268px) {
+    display: none;
+  }
 }
 
 .introText.start-typing {
@@ -302,6 +305,18 @@ export default {
 @keyframes blink {
   from, to { opacity: 1 }
   50% { opacity: 0 }
+}
+
+.ref-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 240px; /* Height for approximately 10 lines */
+}
+.text-subtitle-1 {
+  line-height: 1;
 }
 </style>
 
