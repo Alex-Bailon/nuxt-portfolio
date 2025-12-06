@@ -43,10 +43,7 @@
                 About Me
               </UButton>
               <UButton 
-                href="/A_Bailon_Resume.pdf"
-                external
-                target="_blank"
-                rel="noopener noreferrer"
+                @click="downloadResume"
                 size="xl"
                 variant="outline"
                 color="neutral"
@@ -217,10 +214,7 @@
         
         <div class="text-center mt-16">
           <UButton 
-            href="/A_Bailon_Resume.pdf"
-            external
-            target="_blank"
-            rel="noopener noreferrer"
+            @click="downloadResume"
             size="xl"
             color="primary"
             variant="solid"
@@ -479,6 +473,15 @@ const experience = [
 const yearsOfExperience = computed(() => {
   return new Date().getFullYear() - 2020
 })
+
+const downloadResume = () => {
+  const link = document.createElement('a')
+  link.href = '/A_Bailon_Resume.pdf'
+  link.download = 'A_Bailon_Resume.pdf'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
 
 useHead({
   title: 'Alex Bailon | Full Stack Developer',
