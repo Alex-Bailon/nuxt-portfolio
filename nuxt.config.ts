@@ -17,7 +17,8 @@ export default defineNuxtConfig({
           content: 'Senior Full Stack Developer and Technical Team Lead specializing in Vue.js/Nuxt and React ecosystems. Building scalable solutions and leading high-performing teams.' 
         },
         { name: 'format-detection', content: 'telephone=no' },
-        { name: 'theme-color', content: '#9333ea' }
+        { name: 'theme-color', content: '#a855f7', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#7c3aed', media: '(prefers-color-scheme: dark)' }
       ],
       link: [
         { 
