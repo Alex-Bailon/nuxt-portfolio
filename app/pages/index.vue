@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div class="min-h-screen">
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 animate-pulse"></div>
