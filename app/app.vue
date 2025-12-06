@@ -1,10 +1,8 @@
 <template>
   <div class="min-h-screen bg-slate-950 text-white">
-    <UHeader class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <UHeader class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800" :toggle="false">
       <template #left>
-        <!-- <NuxtLink to="/" class="text-xl font-bold text-white hover:text-purple-400 transition-colors"> -->
-          <img @click="scrollToTop" src="/logo.png" alt="Alex Bailon Logo" class="w-18 h-18 cursor-pointer">
-        <!-- </NuxtLink> -->
+        <img @click="scrollToTop" src="/logo.png" alt="Alex Bailon Logo" class="w-18 h-18 cursor-pointer">
       </template>
       
       <template #right>
