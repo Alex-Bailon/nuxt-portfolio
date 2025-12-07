@@ -90,7 +90,7 @@
                 </div>
                 <div>
                   <p class="text-sm text-slate-400 mb-1">Status</p>
-                  <p class="text-purple-400">Available for opportunities</p>
+                  <p class="available-status">Available for opportunities</p>
                 </div>
               </div>
             </UCard>
@@ -111,7 +111,7 @@
           <UCard 
             v-for="(technologies, category) in techStack" 
             :key="category"
-            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-colors"
+            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2 hover:scale-105"
           >
             <template #header>
               <h3 class="text-lg font-semibold text-white">{{ category }}</h3>
@@ -143,7 +143,7 @@
           <UCard 
             v-for="(project, index) in projects" 
             :key="index"
-            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-300 group overflow-hidden"
+            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-500 group overflow-hidden hover:shadow-2xl hover:shadow-purple-500/30 hover:-translate-y-3"
           >
             <div class="relative h-48 overflow-hidden">
               <img 
@@ -239,7 +239,7 @@
           <UCard 
             v-for="(testimonial, index) in testimonials" 
             :key="index"
-            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-colors"
+            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 hover:-translate-y-2"
           >
             <div class="mb-4">
               <p class="text-slate-300 text-sm leading-relaxed line-clamp-6 italic">
@@ -509,6 +509,24 @@ useHead({
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.available-status {
+  background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #ec4899, #a855f7);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 2.5s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 </style>
 
