@@ -1,5 +1,11 @@
 <template>
   <div class="min-h-screen bg-slate-950 text-white relative">
+    <!-- Scroll Progress Indicator -->
+    <div 
+      class="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 z-[100] scroll-progress-bar"
+      :style="{ width: scrollProgress + '%' }"
+    ></div>
+    
     <!-- Subtle background pattern -->
     <div class="fixed inset-0 pointer-events-none z-0">
       <!-- Subtle dot grid pattern -->
@@ -63,6 +69,35 @@
 </template>
 
 <script setup lang="ts">
+const scrollProgress = ref(0)
+
+onMounted(() => {
+  let ticking = false
+  
+  const updateScrollProgress = () => {
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    const scrollableHeight = documentHeight - windowHeight
+    scrollProgress.value = scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0
+    ticking = false
+  }
+  
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollProgress)
+      ticking = true
+    }
+  }
+  
+  window.addEventListener('scroll', onScroll, { passive: true })
+  updateScrollProgress()
+  
+  onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+  })
+})
+
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
@@ -117,3 +152,11 @@ const socials = [
   }
 ]
 </script>
+
+<style scoped>
+.scroll-progress-bar {
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+  border-radius: 0 2px 2px 0;
+}
+</style>
