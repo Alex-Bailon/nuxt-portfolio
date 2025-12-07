@@ -354,14 +354,19 @@ const techStack = {
   'Backend & Database': [
     'Node.js/Express.js',
     '.NET',
-    'PostgreSQL, MongoDB',
-    'Redis'
+    'PostgreSQL, MongoDB, MySQL',
+    'Redis',
+    'RESTful API design',
+    'Microservices architecture'
   ],
   DevOps: [
     'Microsoft Azure, AWS',
     'OpenSRS',
     'Docker',
-    'Git, GitHub Actions'
+    'Git, GitHub Actions',
+    'Terraform',
+    'CI/CD pipelines (Jenkins, CircleCI, GitLab CI)',
+    'Serverless (AWS Lambda, Azure Functions)'
   ]
 }
 
