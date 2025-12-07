@@ -365,8 +365,8 @@ const techStack = {
     'Docker',
     'Git, GitHub Actions',
     'Terraform',
-    'CI/CD pipelines (Jenkins, CircleCI, GitLab CI)',
-    'Serverless (AWS Lambda, Azure Functions)'
+    'CI/CD pipelines (Azure DevOps, Jenkins, GitHub Actions)',
+    'Serverless (Azure Functions, AWS Lambda)'
   ]
 }
 
