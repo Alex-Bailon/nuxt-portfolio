@@ -25,15 +25,15 @@
       
       <template #right>
         <nav class="hidden md:flex gap-6 items-center">
-          <a 
+          <NuxtLink 
             v-for="link in navLinks" 
             :key="link.href"
-            :href="link.href"
+            :to="link.href"
             @click="handleNavClick($event, link.href)"
             class="text-slate-300 hover:text-purple-400 transition-colors text-sm font-medium cursor-pointer"
           >
             {{ link.label }}
-          </a>
+          </NuxtLink>
         </nav>
         
         <div class="flex gap-2">
@@ -64,13 +64,21 @@
           Alex Bailon &copy; {{ new Date().getFullYear() }}
         </span>
       </template>
+      <template #right>
+        <NuxtLink 
+          to="/3d-printing" 
+          class="text-slate-400 hover:text-purple-400 transition-colors text-sm"
+        >
+          3D Modeling & Printing
+        </NuxtLink>
+      </template>
     </UFooter>
   </div>
 </template>
 
 <script setup lang="ts">
 const scrollProgress = ref(0)
-
+const router = useRouter()
 onMounted(() => {
   let ticking = false
   
@@ -109,29 +117,61 @@ const navLinks = [
 
 // Handle smooth scrolling for hash links
 const handleNavClick = (e: Event, href: string) => {
+  // If it's a hash link, check if we're on the home page
   if (href.startsWith('#')) {
     e.preventDefault()
-    const targetId = href.substring(1)
-    const targetElement = document.getElementById(targetId)
+    const currentPath = router.currentRoute.value.path
     
-    if (targetElement) {
-      const headerOffset = 80 // Account for fixed header
-      const elementPosition = targetElement.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+    // If we're on the 3D printing page, navigate to home first
+    if (currentPath === '/3d-printing') {
+      router.push('/').then(() => {
+        // Wait for the page to load, then scroll to the section
+        setTimeout(() => {
+          const targetId = href.substring(1)
+          const targetElement = document.getElementById(targetId)
+          
+          if (targetElement) {
+            const headerOffset = 80 // Account for fixed header
+            const elementPosition = targetElement.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            })
+          }
+        }, 100) // Small delay to ensure page is rendered
       })
+    } else {
+      // We're on the home page, just scroll to the section
+      const targetId = href.substring(1)
+      const targetElement = document.getElementById(targetId)
+      
+      if (targetElement) {
+        const headerOffset = 80 // Account for fixed header
+        const elementPosition = targetElement.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
     }
   }
+  // For regular page links, let Nuxt Router handle navigation
+  // No need to prevent default
 }
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
+  if (router.currentRoute.value.path === '/3d-printing') {
+    router.push('/')
+  } else {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
 }
 
 const socials = [

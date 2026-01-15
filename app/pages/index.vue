@@ -34,21 +34,22 @@
             </p>
             <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
               <UButton 
-                to="#about" 
+                @click="downloadResume"
                 size="xl"
                 color="primary"
                 variant="solid"
                 class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
               >
-                About Me
+                Download Resume
               </UButton>
               <UButton 
-                @click="downloadResume"
+                to="/3d-printing"
                 size="xl"
                 variant="outline"
                 color="neutral"
+                icon="i-heroicons-cube"
               >
-                Download Resume
+                3D Modeling & Printing
               </UButton>
             </div>
           </div>
@@ -235,11 +236,11 @@
             Testimonials
           </span>
         </h2>
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
           <UCard 
             v-for="(testimonial, index) in testimonials" 
             :key="index"
-            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 hover:-translate-y-2"
+            class="bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 hover:-translate-y-2 w-full md:w-[calc(33.333%-1rem)] max-w-md"
           >
             <div class="mb-4">
               <p class="text-slate-300 text-sm leading-relaxed line-clamp-6 italic">
@@ -338,11 +339,10 @@ My approach combines technical excellence with strategic thinking, focusing on d
 // Tech Stack
 const techStack = {
   'AI & Productivity': [
-    'Jest, Cypress, Playwright',
-    'AI-assisted development workflows',
+    'AI-assisted development & workflow automation',
     'Code generation & optimization tools',
     'AI-powered testing & documentation',
-    'Workflow automation with AI'
+    'Jest, Cypress, Playwright',
   ],
   Frontend: [
     'Vue.js/Nuxt (Vue 3, Nuxt 3, Pinia, Vue Router)',
@@ -354,6 +354,7 @@ const techStack = {
   'Backend & Database': [
     'Node.js/Express.js',
     '.NET',
+    'Python',
     'PostgreSQL, MongoDB, MySQL',
     'Redis',
     'RESTful API design',
@@ -397,6 +398,16 @@ const projects = [
 
 // Testimonials
 const testimonials = [
+  {
+    name: 'Cody Graham',
+    role: 'Director of Product',
+    text: `I've had the pleasure of working closely with Alex and during that time I've seen firsthand his impressive growth as both a developer and a leader. He consistently brings thoughtful insights to the table and approaches challenges with curiosity, ownership, and a genuine willingness to learn and grow.
+
+What stands out most is his ability to rapidly ideate and move from concept to practical, well-reasoned solutions. He doesn't just write code; he thinks critically about the problem space, asks the right questions, and collaborates effectively to arrive at outcomes that benefit the whole team.
+
+Over time, I've also watched him step confidently into more of a leadership mindset, supporting teammates and raising the overall quality of our work. His combination of technical skill, adaptability, and drive makes him a strong asset to any team, and I would highly recommend him.`,
+    linkedin: 'https://www.linkedin.com/in/cody-graham-88803980/'
+  },
   {
     name: 'Nick Elliott',
     role: "Alex's Manager",
