@@ -106,9 +106,6 @@ const initScene = async () => {
         
         // Performance check: warn about large models
         const vertexCount = geometry.attributes.position?.count || 0
-        if (vertexCount > 50000) {
-          console.warn(`Large STL model detected (${vertexCount} vertices). Consider using a simplified version for preview.`)
-        }
         
         geometry.computeVertexNormals()
         geometry.center()

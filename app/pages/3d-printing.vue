@@ -152,6 +152,10 @@ const models = ref<Model[]>([
     title: 'My Nephew',
     category: 'Artistic',
     stlUrl: '/models/nephew.stl',
+  }, {
+    title: 'Custom Keychains',
+    category: 'Functional',
+    stlUrl: '/models/keychains.stl',
   }
 ])
 
