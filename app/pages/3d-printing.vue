@@ -144,19 +144,27 @@ const models = ref<Model[]>([
     title: 'My Logo',
     category: 'Artistic',
     stlUrl: '/logo.stl',
-  }, {
+  },
+  {
     title: 'My Dog, Chispa, Statue',
     category: 'Artistic',
     stlUrl: '/models/dog.stl',
-  }, {
+  },
+  {
     title: 'My Nephew',
     category: 'Artistic',
     stlUrl: '/models/nephew.stl',
-  }, {
+  },
+  {
     title: 'Custom Keychains',
     category: 'Functional',
     stlUrl: '/models/keychains.stl',
-  }
+  },
+  {
+    title: 'Custom Dragon',
+    category: 'Artistic',
+    stlUrl: '/models/dragon.stl',
+  },
 ])
 
 const stats = ref<Stat[]>([
